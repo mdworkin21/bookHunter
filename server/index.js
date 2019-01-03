@@ -10,10 +10,8 @@ app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-//Static Files
+//Static Middleware
 app.use(express.static(path.join('client/public')))
-
-
 
 //Handles 500 Errs
 app.use((err, req, res, next) => {
