@@ -2,7 +2,7 @@ module.exports = {
   entry: './client', // assumes your entry point is the index.js in the root of your project folder
   mode: 'development',
   output: {
-    path: __dirname + '/client/public', 
+    path: __dirname + '/public', 
     filename: 'bundle.js',
   },
   devtool: 'source-maps',

@@ -5,7 +5,7 @@ const router = require('express').Router();
 
 //Handles 404 Errors
 router.use((req, res, next) => {
-  const err = new Error('Not Found. TEST')
+  const err = new Error('Not Found.')
   err.status = 404; 
   next(err)
 })
