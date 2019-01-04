@@ -1,10 +1,8 @@
-const path = require('path')
-
 module.exports = {
   entry: './client', // assumes your entry point is the index.js in the root of your project folder
   mode: 'development',
   output: {
-    path: path.join(__dirname, '/client/public'), 
+    path: __dirname + '/client/public', 
     filename: 'bundle.js',
     publicPath: '/'
   },
