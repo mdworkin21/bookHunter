@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '..', '/client/public')))
 
 //Api Routes
+app.use('/api', require('./api'))
+
 
 //Handles 500 Errs
 app.use((err, req, res, next) => {

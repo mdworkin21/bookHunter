@@ -6,7 +6,7 @@ const SearchBar = (props) => {
     <div className="ui segment">
       <form className="ui form searchBar">
         <div className="field">
-          <label>Book Seach</label>
+          <label>Book Search</label>
           <input type="text" />
         </div>
       </form>

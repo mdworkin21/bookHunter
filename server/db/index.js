@@ -1,13 +1,13 @@
-const router = require('express').Router();
+const db = require('./database')
 
-//API Routes 
-// router.use
+const User = require('./models/User')
+const Sequelize = require('sequelize')
 
-//Handles 404 Errors
-router.use((req, res, next) => {
-  const err = new Error('Not Found.')
-  err.status = 404; 
-  next(err)
-})
+//Define your associations here
 
-module.exports = router;
+
+
+module.exports = {
+  db,
+  User
+}
