@@ -1,9 +1,12 @@
+const path = require('path')
+
 module.exports = {
   entry: './client', // assumes your entry point is the index.js in the root of your project folder
   mode: 'development',
   output: {
-    path: __dirname + '/client/public', // assumes your bundle.js will also be in the root of your project folder
-    filename: 'bundle.js'
+    path: path.join(__dirname, '/client/public'), 
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   devtool: 'source-maps',
   module: {
