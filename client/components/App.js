@@ -4,7 +4,7 @@ import axios from 'axios'
 import SearchBar from './SearchBar';
 import SubmitBtn from './SubmitBtn';
 import DisplayResults from './DisplayResults';
-
+import '../public/style/App.css'
 class App  extends Component {
   state = {results: []}
 
@@ -16,14 +16,15 @@ class App  extends Component {
       results: response.data.docs
     })
   }
+
   render(){
       return (
-      <div>
+      <div className="appBackground">
         <h1>Book Hunter</h1>
         <div className="ui container" style={{marginTop: '10em'}}>
           <SearchBar />
           <SubmitBtn handleSubmit={(event) => this.handleSubmit(event)} />
-          <div className="ui internally celled grid" style={{marginTop: '2em'}}> 
+          <div className="ui grid" style={{marginTop: '2em'}}> 
             <DisplayResults results={this.state.results}/>
           </div>
         </div>

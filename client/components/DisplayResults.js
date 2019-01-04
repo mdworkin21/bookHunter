@@ -1,4 +1,5 @@
 import React from 'react'
+import '../public/style/DisplayResults.css'
 
 const DisplayResults = (props) => {
   console.log('PROPS', props)
