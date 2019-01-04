@@ -15,6 +15,11 @@ app.use(express.static(path.join(__dirname, '..', '/client/public')))
 
 //Api Routes
 
+//Static HTML For When No API Route Matches (Do I need this?)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '/client/public/'))
+})
+
 //Handles 500 Errs
 app.use((err, req, res, next) => {
   console.error(err);
