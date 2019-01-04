@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '..', '/client/public')))
 
 //Static HTML For When No API Route Matches 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '/client/public/bundle.js'))
+  res.sendFile(path.join(__dirname, '..', '/client/public/'))
 })
 
 //Handles 500 Errs
