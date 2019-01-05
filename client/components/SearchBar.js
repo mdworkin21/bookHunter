@@ -4,10 +4,10 @@ import '../public/style/SearchBar.css'
 const SearchBar = (props) => {
   return (
     <div className="ui segment">
-      <form className="ui form searchBar">
+      <form className="ui form searchBar" onSubmit={props.handleSubmit}>
         <div className="field">
           <label>Book Search</label>
-          <input type="text" name="term" onChange={props.handleChange}/>
+          <input type="text" name="term" value={props.searchValue} onChange={props.handleChange}/>
         </div>
       </form>
     </div>
