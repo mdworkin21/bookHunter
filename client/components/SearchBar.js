@@ -7,7 +7,7 @@ const SearchBar = (props) => {
       <form className="ui form searchBar">
         <div className="field">
           <label>Book Search</label>
-          <input type="text" />
+          <input type="text" name="term" onChange={props.handleChange}/>
         </div>
       </form>
     </div>

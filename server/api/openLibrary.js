@@ -1,12 +1,9 @@
 const router = require('express').Router()
 const axios = require('axios')
-//URL: http://openlibrary.org/search.json?
 
-router.get('/', async (req, res, next) => {
-  console.log('HITME!')
+router.get('/:search', async (req, res, next) => {
   try{
-    let response = await axios.get('http://openlibrary.org/search.json?q=fight+club')
-    console.log('RES', response)
+    let response = await axios.get(`http://openlibrary.org/search.json?q=${req.params.search}`)
     res.status(200).json(response.data)
 
   } catch(err){
