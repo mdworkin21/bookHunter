@@ -52,8 +52,7 @@ class App  extends Component {
     }) 
   }
 
-  handleAdvancedOption(){
-    console.log('CLICKS!')
+  handleAdvancedOption(){ 
     this.setState({
       advanced: !this.state.advanced
     })

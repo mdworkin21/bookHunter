@@ -13,7 +13,7 @@ const SearchBar = (props) => {
         </div>
       </form>
         <Button buttonName="Advanced Search" clickEvent={(event) => props.handleAdvancedOption(event)}/>
-    </div>
+    </div> 
   )
 }
 

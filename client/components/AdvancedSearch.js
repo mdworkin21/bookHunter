@@ -15,7 +15,7 @@ const AdvancedSearch = (props) => {
     </form>
     <Button buttonName="Close" clickEvent={(event) => props.handleAdvancedOption(event)}/>
   </div>
-  )
+  ) 
 }
 
 export default AdvancedSearch
