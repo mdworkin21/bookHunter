@@ -47,7 +47,7 @@ class App  extends Component {
             handleSubmit={(event) => this.handleSubmit(event)}
             searchValue={this.state.term}
           />
-          <Button buttonName="Submit" clickEvent={(event) => this.handleSubmit(event)} />
+          <Button disabled={!this.state.term}  buttonName="Submit" clickEvent={(event) => this.handleSubmit(event)} />
           <Button buttonName="Clear" clickEvent={(event) => this.handleReset(event)} />
           <div className="ui grid" style={{marginTop: '2em'}}> 
           <DisplayResults 
