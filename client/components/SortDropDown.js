@@ -9,9 +9,9 @@ const SortDropDown = (props) => {
     <i className="dropdown icon"></i>
     <div className="default text" >{dropDownTag}</div>
     <div className="menu">
-      <div className="item" onClick={props.handleClick} data-value="0">Title</div>
-      <div className="item" onClick={props.handleClick} data-value="1">Author</div>
-      <div className="item" onClick={props.handleClick} data-value="2">Year</div>
+      <div className="item" onClick={props.handleClick}>Title</div>
+      <div className="item" onClick={props.handleClick}>Author</div>
+      <div className="item" onClick={props.handleClick}>Year</div>
     </div>
   </div>
   )
