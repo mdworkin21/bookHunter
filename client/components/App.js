@@ -57,7 +57,7 @@ class App  extends Component {
       advanced: !this.state.advanced
     })
   } 
-
+ 
   advancedSearchView(){
     return this.state.advanced ? 
             <AdvancedSearch
