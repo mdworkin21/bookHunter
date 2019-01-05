@@ -1,12 +1,11 @@
 import React from 'react'
-// import '../public/style/DisplayResults.css'
+import '../public/style/DisplayResults.css'
 
 const DisplayResults = (props) => {
-  console.log('PROPS', props)
   return (
     props.results.map((el, index) =>{
       return(
-      <div className="ui card" key={index} style={{marginLeft:'2em'}}>
+      <div className="ui card displayResults" key={index} style={{marginLeft:'2em'}}>
         <div className="image">
           <img src="#" />
         </div>

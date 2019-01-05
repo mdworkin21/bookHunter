@@ -1,11 +1,13 @@
 import React from 'react'
+import './SortDropDown'
 
 const SortDropDown = (props) => {
+  let dropDownTag = props.sortBy ? props.sortBy : "Sort Results"
   return (
-    <div className="ui selection simple dropdown ">
+    <div className="ui selection simple dropdown sortDropDown">
     <input name="sortBy" />
     <i className="dropdown icon"></i>
-    <div className="default text">Sort Results</div>
+    <div className="default text" >{dropDownTag}</div>
     <div className="menu">
       <div className="item" onClick={props.handleClick} data-value="0">Title</div>
       <div className="item" onClick={props.handleClick} data-value="1">Author</div>

@@ -15,7 +15,7 @@ class App  extends Component {
   state = {
     term: "",
     results: [],
-    sort: ""
+    sortBy: ""
   }
   
   async handleSubmit(event){
@@ -42,20 +42,12 @@ class App  extends Component {
   }
 
   handleClick(event){
-    console.log(this.state.sort)
+    let sortedResults = sort(this.state.results, event.currentTarget.textContent)
     this.setState({
-      sort: event.currentTarget.textContent,
-    })
-    let sortedResults = sort(this.state.results, this.state.sort)
-    this.updateView(sortedResults)
+      results: sortedResults,
+      sortBy: event.currentTarget.textContent
+    }) 
   }
-
-  updateView(updatedView){
-    this.setState({
-      results: updatedView,
-    })
-  }
-
 
   render(){
       return (
@@ -71,7 +63,7 @@ class App  extends Component {
           {/* <AdvancedSearch/> */}
           <Button disabled={!this.state.term}  buttonName="Submit" clickEvent={(event) => this.handleSubmit(event)} />
           <Button buttonName="Clear" clickEvent={(event) => this.handleReset(event)} />
-          <SortDropDown handleClick={(event) => this.handleClick(event)} />
+          <SortDropDown handleClick={(event) => this.handleClick(event)} sortBy={this.state.sortBy} />
           <div className="ui grid" style={{marginTop: '2em'}}> 
           <DisplayResults 
             results={this.state.results}
