@@ -1,5 +1,5 @@
 import React from 'react'
-import './SortDropDown'
+import '../public/style/SortDropDown.css'
 
 const SortDropDown = (props) => {
   let dropDownTag = props.sortBy ? props.sortBy : "Sort Results"
