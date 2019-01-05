@@ -1,5 +1,6 @@
 import React from 'react'
-import SearchBar from './SearchBar';
+import SortDropDown from './SortDropDown';
+import Button from './Button'
 
 const AdvancedSearch = (props) => {
   return (
@@ -9,8 +10,10 @@ const AdvancedSearch = (props) => {
         <label>AdvancedSearch</label>
         <input type="text" name="title" placeholder="Book Title" value={props.searchValue} onChange={props.handleChange}/>
         <input type="text" name="author" placeholder="Author" value={props.searchValue} onChange={props.handleChange}/>
+        <SortDropDown />
       </div>
     </form>
+    <Button buttonName="Close" clickEvent={(event) => props.handleAdvancedOption(event)}/>
   </div>
   )
 }
