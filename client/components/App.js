@@ -51,12 +51,12 @@ class App  extends Component {
       sortBy: event.currentTarget.textContent
     }) 
   }
-
+ 
   handleAdvancedOption(){ 
     this.setState({
       advanced: !this.state.advanced
     })
-  }
+  } 
 
   advancedSearchView(){
     return this.state.advanced ? 
