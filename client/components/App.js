@@ -17,13 +17,17 @@ class App  extends Component {
     term: "",
     results: [],
     sortBy: "",
-    advanced: false
+    advanced: false,
+    author: "",
+    title: ""
   }
   
   async handleSubmit(event){
     event.preventDefault()
-    let response = await axios.get(`/api/openLibrary/${this.state.term}`)
-    console.log('FRTONT', response.data.docs)
+    let queryString = !this.state.advanced ?  
+                      `/api/openLibrary/?q=${this.state.term}` : 
+                      `/api/openLibrary/?author=${this.state.author}&title=${this.state.title}`
+    let response = await axios.get(queryString)    
     this.setState({
       term: "",
       results: response.data.docs
@@ -64,6 +68,9 @@ class App  extends Component {
               handleChange={(event) => this.handleChange(event)} 
               handleSubmit={(event) => this.handleSubmit(event)}
               handleAdvancedOption={(event) => this.handleAdvancedOption(event)}
+              searchValTitle={this.state.title}
+              searchValAuthor={this.state.author}
+            
             /> : 
             <SearchBar 
               handleChange={(event) => this.handleChange(event)} 
@@ -76,12 +83,13 @@ class App  extends Component {
 
   render(){
     let advancedSearch = this.advancedSearchView()
+    let buttonDisable = !this.state.term && (!this.state.title && !this.state.author)
     return (
       <div className="appBackground">
         <h1>Book Hunter</h1>
         <div className="ui container" style={{marginTop: '10em'}}>
           {advancedSearch}
-          <Button disabled={!this.state.term}  buttonName="Submit" clickEvent={(event) => this.handleSubmit(event)} />
+          <Button disabled={buttonDisable}  buttonName="Submit" clickEvent={(event) => this.handleSubmit(event)} />
           <Button buttonName="Clear" clickEvent={(event) => this.handleReset(event)} />
           <SortDropDown handleClick={(event) => this.handleClick(event)} sortBy={this.state.sortBy} />
           <div className="ui grid" style={{marginTop: '2em'}}> 
