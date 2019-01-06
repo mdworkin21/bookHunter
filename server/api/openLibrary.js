@@ -14,7 +14,7 @@ router.get('/:search?', async (req, res, next) => {
    }
 
     let queryString = req.query.q !== undefined ? `q=${req.query.q}`: advanced
-    let response = await axios.get(`http://openlibrary.org/search.json?${queryString}`) 
+    let response = await axios.get(`https://openlibrary.org/search.json?${queryString}`) 
           res.status(200).json(response.data)
     } catch(err){
         next(err)
