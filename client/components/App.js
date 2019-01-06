@@ -15,11 +15,11 @@ import sort from '../utilities/sort'
 class App  extends Component {
   state = {
     term: "",
+    author: "",
+    title: "",
     results: [],
     sortBy: "",
-    advanced: false,
-    author: "",
-    title: ""
+    advanced: false
   }
   
   async handleSubmit(event){
@@ -27,11 +27,17 @@ class App  extends Component {
     let queryString = !this.state.advanced ?  
                       `/api/openLibrary/?q=${this.state.term}` : 
                       `/api/openLibrary/?author=${this.state.author}&title=${this.state.title}`
-    let response = await axios.get(queryString)    
-    this.setState({
-      term: "",
-      results: response.data.docs
-    })
+    try{
+      let response = await axios.get(queryString)    
+      this.setState({
+        term: "",
+        author: "",
+        title: "",
+        results: response.data.docs
+      })
+    } catch(err){
+        console.log(err)
+    }
   }
 
   handleReset(event){
