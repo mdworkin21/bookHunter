@@ -35,4 +35,4 @@ function sortResults(arr, sortBy){
   return arr
 }
 
-export default sortResults
+module.exports = sortResults

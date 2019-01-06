@@ -8,7 +8,7 @@ import AdvancedSearch from './AdvancedSearch'
 import '../public/style/App.css'
 import SortDropDown from './SortDropDown';
 import Icon from './Icon'
-import sort from '../utilities/sort'
+import sort from '../../utilities/sort'
 
 
 
@@ -17,6 +17,7 @@ class App  extends Component {
     term: "",
     author: "",
     title: "",
+    year: "",
     results: [],
     sortBy: "",
     advanced: false
@@ -25,15 +26,16 @@ class App  extends Component {
   async handleSubmit(event){
     event.preventDefault()
     let queryString = !this.state.advanced ?  
-                      `/api/openLibrary/?q=${this.state.term}` : 
-                      `/api/openLibrary/?author=${this.state.author}&title=${this.state.title}`
+        `/api/openLibrary/?q=${this.state.term}` : 
+        `/api/openLibrary/?author=${this.state.author}&title=${this.state.title}&year=${this.state.year}&sort=${this.state.sortBy}`
     try{
       let response = await axios.get(queryString)    
       this.setState({
         term: "",
         author: "",
         title: "",
-        results: response.data.docs
+        year: "",
+        results: response.data
       })
     } catch(err){
         console.log(err)
@@ -44,6 +46,8 @@ class App  extends Component {
     event.preventDefault()
     this.setState({
       term: "",
+      author: "",
+      title: "",
       results: []
     })
   }
@@ -58,7 +62,7 @@ class App  extends Component {
     let sortedResults = sort(this.state.results, event.currentTarget.textContent)
     this.setState({
       results: sortedResults,
-      sortBy: event.currentTarget.textContent
+      sortBy: event.currentTarget.textContent,
     }) 
   }
  
@@ -74,9 +78,10 @@ class App  extends Component {
               handleChange={(event) => this.handleChange(event)} 
               handleSubmit={(event) => this.handleSubmit(event)}
               handleAdvancedOption={(event) => this.handleAdvancedOption(event)}
+              handleClick={(event) => this.handleClick(event)} filterBy={this.state.filterBy}sortBy={this.state.sortBy}
               searchValTitle={this.state.title}
               searchValAuthor={this.state.author}
-            
+              searchValYear={this.state.year}
             /> : 
             <SearchBar 
               handleChange={(event) => this.handleChange(event)} 
@@ -95,17 +100,23 @@ class App  extends Component {
         <h1>Book Hunter</h1>
         <div className="ui container" style={{marginTop: '10em'}}>
           {advancedSearch}
-          <Button disabled={buttonDisable}  buttonName="Submit" clickEvent={(event) => this.handleSubmit(event)} />
-          <Button buttonName="Clear" clickEvent={(event) => this.handleReset(event)} />
-          <SortDropDown handleClick={(event) => this.handleClick(event)} sortBy={this.state.sortBy} />
+          <Button 
+            disabled={buttonDisable}  
+            buttonName="Submit" 
+            clickEvent={(event) => this.handleSubmit(event)} 
+          />
+          <Button 
+            buttonName="Clear" 
+            clickEvent={(event) => this.handleReset(event)} 
+          />
           <div className="ui grid" style={{marginTop: '2em'}}> 
-          <DisplayResults results={this.state.results} />   
+            <DisplayResults results={this.state.results} />   
           </div>
             {/* <Icon icon="angle left"/>
             <Icon icon="angle right"/> */}
         </div>
       </div>
-      )
+    )
   }
 }
 
