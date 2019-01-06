@@ -23,7 +23,7 @@ class App  extends Component {
   async handleSubmit(event){
     event.preventDefault()
     let response = await axios.get(`/api/openLibrary/${this.state.term}`)
-    console.log('FRTONT', response)
+    console.log('FRTONT', response.data.docs)
     this.setState({
       term: "",
       results: response.data.docs
