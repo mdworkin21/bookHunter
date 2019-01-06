@@ -5,7 +5,7 @@ const DisplayResults = (props) => {
     props.results.map((el, index) =>{
       let isbnNum = el.isbn ? el.isbn[0] : ""
       let displayImage = isbnNum === "" ? "openBook.jpg" :
-      `http://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
+      `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
       return(
       <div className="ui card displayResults" key={index} style={{marginLeft:'2em'}}>
         <div className="image">
