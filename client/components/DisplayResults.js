@@ -11,7 +11,7 @@ const DisplayResults = (props) => {
         <div className="image">
           <img src={displayImage}/>
         </div>
-        <div className="content">
+        <div className="content" style={{backgroundColor: '#f0ead6'}}>
           <a className="header">{el.title_suggest}</a>
           <p>{el.subtitle}</p>
           <div className="meta">
