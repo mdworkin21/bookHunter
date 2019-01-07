@@ -1,5 +1,5 @@
 /* Mobile */
-#loadSpinContainer{
+#load-spinner{
   height: 8vh;
   margin-top: 2em;
   padding-bottom: 4em;
@@ -7,7 +7,7 @@
 
 /* Medium Screens */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
-  #loadSpinContainer{
+  #load-spinner{
     height: 8vh;
     margin-top: 10em;
     padding-top: 4em;
@@ -17,7 +17,7 @@
 
 /* Large Screens */
 @media only screen and (min-width: 64.063em) and (max-width: 90em) { 
-  #loadSpinContainer{
+  #load-spinner{
     height: 8vh;
     margin-top: 7em;
     padding-bottom: 4em;
@@ -26,7 +26,7 @@
 
 /* Extra Large Screen */
 @media only screen and (min-width: 90.063em) { 
-  #loadSpinContainer{
+  #load-spinner{
     height: 8vh;
     margin-top: 8em;
     padding-bottom: 4em;

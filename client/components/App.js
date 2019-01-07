@@ -10,7 +10,7 @@ import Icon from './Icon'
 import sort from '../../utilities/sort'
 import LoadSpinner from './LoadSpinner'
 import NoResults from './NoResults'
-
+import '../public/style/App.css'
 
 class App  extends Component {
   state = {
@@ -135,7 +135,7 @@ class App  extends Component {
     return (
       <div className="appBackground">
         <h1>Book Hunter</h1>
-        <div className="ui container" style={{marginTop: '10em'}}>
+        <div className="ui container" id="search-container">
           {advancedSearch}
           <Button 
             disabled={buttonDisable}  
