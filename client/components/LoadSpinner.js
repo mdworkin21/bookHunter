@@ -3,9 +3,9 @@ import '../public/style/LoadSpinner.css'
 
 const LoadSpinner = () => {
   return (
-      <div class="ui segment loadSpinner">
-        <div class="ui active  dimmer">
-          <div class="ui text loader">Loading Search Results</div>
+      <div className="ui segment loadSpinner" >
+        <div className="ui active  dimmer">
+          <div className="ui text loader">Loading Search Results</div>
         </div>
         <p></p>
       </div>

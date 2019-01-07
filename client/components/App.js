@@ -9,6 +9,7 @@ import '../public/style/App.css'
 import Icon from './Icon'
 import sort from '../../utilities/sort'
 import LoadSpinner from './LoadSpinner'
+import NoResults from './NoResults'
 
 
 class App  extends Component {
@@ -20,7 +21,8 @@ class App  extends Component {
     results: [],
     sortBy: "",
     advanced: false,
-    loading: false
+    loading: false,
+    noResults: false
   }
   
   async handleSubmit(event){
@@ -34,15 +36,23 @@ class App  extends Component {
     try{
       let response = await axios.get(queryString)  
       let setOnState = Array.isArray(response.data) ? response.data : response.data.docs
-      this.setState({
-        term: "",
-        author: "",
-        title: "",
-        year: "",
-        results: setOnState,
-        sortBy: "",
-        loading: false
-      })
+      if (!setOnState.length || response.status !== 200){
+        this.setState({
+          loading: false,
+          noResults: true
+        })
+      } else {
+          this.setState({
+            term: "",
+            author: "",
+            title: "",
+            year: "",
+            results: setOnState,
+            sortBy: "",
+            loading: false,
+            noResults: false
+          })
+      }
     } catch(err){
         console.log(err)
     }
@@ -54,8 +64,10 @@ class App  extends Component {
       term: "",
       author: "",
       title: "",
+      year: "",
       sortBy: "",
-      results: []
+      results: [],
+      noResults: false
     })
   }
 
@@ -116,9 +128,10 @@ class App  extends Component {
             buttonName="Clear" 
             clickEvent={(event) => this.handleReset(event)} 
           />
-          {this.state.loading ? <LoadSpinner /> : ""}
+          {this.state.loading ? <LoadSpinner /> : "" }
+          {this.state.noResults ? <NoResults /> : "" }
           <div className="ui grid" style={{marginTop: '2em'}}> 
-          <DisplayResults results={this.state.results} /> } 
+          <DisplayResults results={this.state.results} /> 
           </div>
           
             {/* <Icon icon="angle left"/>
