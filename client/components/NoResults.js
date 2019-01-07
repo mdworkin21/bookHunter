@@ -2,11 +2,11 @@ import React from 'react'
 
 const NoResults = () => {
   return (
-    <div className="ui negative message" style={{marginTop: '8vh'}}>
+    <div className="ui negative message" style={{marginTop: '8vh', paddingLeft: '35%'}}>
       <div className="header">
-        We're sorry, there are no results for that search.
+        We're sorry, there are no results.
       </div>
-      <p>Please try again.</p>
+      <p style={{paddingLeft: '10%'}}>Please try again.</p>
     </div>
   )
 }

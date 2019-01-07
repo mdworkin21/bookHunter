@@ -38,8 +38,13 @@ class App  extends Component {
       let setOnState = Array.isArray(response.data) ? response.data : response.data.docs
       if (!setOnState.length || response.status !== 200){
         this.setState({
+          term: "",
+            author: "",
+            title: "",
+            year: "",
           loading: false,
-          noResults: true
+          noResults: true,
+          results: []
         })
       } else {
           this.setState({
