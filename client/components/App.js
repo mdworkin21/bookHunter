@@ -38,6 +38,7 @@ class App  extends Component {
     try{
       let response = await axios.get(queryString)  
       let setOnState = Array.isArray(response.data) ? response.data : response.data.docs
+      console.log('RE', response.status)
       if (!setOnState.length || response.status !== 200){
         this.setState({
           term: "",
@@ -61,6 +62,15 @@ class App  extends Component {
           })
       }
     } catch(err){
+        this.setState({
+          term: "",
+          author: "",
+          title: "",
+          year: "",
+          loading: false,
+          noResults: true,
+          results: []
+        })
         console.log(err)
     }
   }
@@ -74,6 +84,7 @@ class App  extends Component {
       year: "",
       sortBy: "",
       results: [],
+      loading: false,
       noResults: false
     })
   }
