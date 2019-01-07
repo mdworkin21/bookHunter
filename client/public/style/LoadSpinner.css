@@ -1,0 +1,8 @@
+.loadSpinner{
+  height: 8vh;
+  margin-top: 10em;
+  width: 40em;
+  position: relative;
+  left: 25%;
+  padding-top: 4em;
+}

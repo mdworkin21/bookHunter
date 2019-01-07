@@ -8,7 +8,7 @@ import AdvancedSearch from './AdvancedSearch'
 import '../public/style/App.css'
 import Icon from './Icon'
 import sort from '../../utilities/sort'
-
+import LoadSpinner from './LoadSpinner'
 
 
 class App  extends Component {
@@ -19,11 +19,15 @@ class App  extends Component {
     year: "",
     results: [],
     sortBy: "",
-    advanced: false
+    advanced: false,
+    loading: false
   }
   
   async handleSubmit(event){
     event.preventDefault()
+    this.setState({
+      loading: true
+    })
     let queryString = !this.state.advanced ?  
         `/api/openLibrary/?q=${this.state.term}` : 
         `/api/openLibrary/?author=${this.state.author}&title=${this.state.title}&year=${this.state.year}&sort=${this.state.sortBy}`
@@ -36,7 +40,8 @@ class App  extends Component {
         title: "",
         year: "",
         results: setOnState,
-        sortBy: ""
+        sortBy: "",
+        loading: false
       })
     } catch(err){
         console.log(err)
@@ -111,9 +116,11 @@ class App  extends Component {
             buttonName="Clear" 
             clickEvent={(event) => this.handleReset(event)} 
           />
+          {this.state.loading ? <LoadSpinner /> : ""}
           <div className="ui grid" style={{marginTop: '2em'}}> 
-            <DisplayResults results={this.state.results} />   
+          <DisplayResults results={this.state.results} /> } 
           </div>
+          
             {/* <Icon icon="angle left"/>
             <Icon icon="angle right"/> */}
         </div>
