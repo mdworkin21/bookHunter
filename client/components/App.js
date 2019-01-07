@@ -28,7 +28,9 @@ class App  extends Component {
   async handleSubmit(event){
     event.preventDefault()
     this.setState({
-      loading: true
+      loading: true,
+      noResults: false,
+      results: []
     })
     let queryString = !this.state.advanced ?  
         `/api/openLibrary/?q=${this.state.term}` : 
@@ -39,9 +41,9 @@ class App  extends Component {
       if (!setOnState.length || response.status !== 200){
         this.setState({
           term: "",
-            author: "",
-            title: "",
-            year: "",
+          author: "",
+          title: "",
+          year: "",
           loading: false,
           noResults: true,
           results: []
