@@ -29,13 +29,16 @@ class App  extends Component {
         `/api/openLibrary/?q=${this.state.term}` : 
         `/api/openLibrary/?author=${this.state.author}&title=${this.state.title}&year=${this.state.year}&sort=${this.state.sortBy}`
     try{
-      let response = await axios.get(queryString)    
+      let response = await axios.get(queryString)  
+      let setOnState = Array.isArray(response.data) ? response.data : response.data.docs
+      console.log('RES', response)  
       this.setState({
         term: "",
         author: "",
         title: "",
         year: "",
-        results: response.data
+        results: setOnState,
+        sortBy: ""
       })
     } catch(err){
         console.log(err)
@@ -48,6 +51,7 @@ class App  extends Component {
       term: "",
       author: "",
       title: "",
+      sortBy: "",
       results: []
     })
   }
