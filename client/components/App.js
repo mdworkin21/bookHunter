@@ -6,7 +6,6 @@ import Button from './Button';
 import DisplayResults from './DisplayResults';
 import AdvancedSearch from './AdvancedSearch'
 import '../public/style/App.css'
-import SortDropDown from './SortDropDown';
 import Icon from './Icon'
 import sort from '../../utilities/sort'
 
@@ -31,7 +30,6 @@ class App  extends Component {
     try{
       let response = await axios.get(queryString)  
       let setOnState = Array.isArray(response.data) ? response.data : response.data.docs
-      console.log('RES', response)  
       this.setState({
         term: "",
         author: "",
