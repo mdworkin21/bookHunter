@@ -1,0 +1,36 @@
+/* Mobile*/
+.no-result-container{
+  position: relative;
+  top: 5em;
+}
+
+.no-result-content{
+  text-align: center;
+} 
+
+/* Medium Screens */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { 
+  .no-result-container{
+    position: relative;
+    top: 10em;
+  }
+
+}
+
+/* Large Screens */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) { 
+  .no-result-container{
+    position: relative;
+    top: 6em;
+  }
+}
+
+/* Extra Large Screen */
+@media only screen and (min-width: 90.063em) { 
+  .no-result-container{
+    position: relative;
+    top: 9em;
+  } 
+} 
+
+

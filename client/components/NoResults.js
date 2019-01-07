@@ -1,12 +1,11 @@
 import React from 'react'
+import '../public/style/NoResults.css'
 
 const NoResults = () => {
   return (
-    <div className="ui negative message" style={{marginTop: '8vh', paddingLeft: '35%'}}>
-      <div className="header">
-        We're sorry, there are no results.
-      </div>
-      <p style={{paddingLeft: '10%'}}>Please try again.</p>
+    <div className="ui negative message no-result-container">
+      <div className="header no-result-content">We're sorry, there are no results.</div>
+      <p className='no-result-content' >Please try again.</p>
     </div>
   )
 }
