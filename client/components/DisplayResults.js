@@ -1,30 +1,41 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import '../public/style/DisplayResults.css'
 
 const DisplayResults = (props) => {
+  console.log('DISPLAY', props.state.results)
+  let results = props.state.results
   return (
-    props.results.map((el, index) =>{
+    results.map((el, index) =>{
       let isbnNum = el.isbn ? el.isbn[0] : ""
       let displayImage = isbnNum === "" ? "openBook.jpg" :
       `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
       return(
-      <div className="ui card displayResults" key={index} style={{marginLeft:'2em'}}>
-        <div className="image">
-          <img src={displayImage}/>
-        </div>
-        <div className="content" style={{backgroundColor: '#f0ead6'}}>
-          <a className="header">{el.title_suggest}</a>
-          <p>{el.subtitle}</p>
-          <div className="meta">
-            <span className="date">By: {el.author_name}</span>
+        <div className="ui card" id="display-results-container" key={index}>
+          <div className="image display-results-child" id="child-image">
+            <img src={displayImage}/>
           </div>
-          <div className="description">
-            Published: {el.first_publish_year}
+          <div className="content" id="child-content">
+            <a className="header">{el.title_suggest}</a>
+            <p>{el.subtitle}</p>
+            <div className="meta">
+              <span className="date">By: {el.author_name}</span>
+            </div>
+            <div className="description">
+              Published: {el.first_publish_year}
+            </div>
           </div>
         </div>
-      </div>
       )
     })
   )
 }
 
-export default DisplayResults
+
+const mapStateToProps = (state) => {
+  console.log('MAP', state)
+  return {state}
+}
+
+
+export default connect(mapStateToProps)(DisplayResults)

@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 import regeneratorRuntime from "regenerator-runtime";
 import axios from 'axios'
+import {connect} from 'react-redux'
 import SearchBar from './SearchBar';
 import Button from './Button';
 import DisplayResults from './DisplayResults';
 import AdvancedSearch from './AdvancedSearch'
 import '../public/style/App.css'
-import Icon from './Icon'
 import sort from '../../utilities/sort'
 import LoadSpinner from './LoadSpinner'
 import NoResults from './NoResults'
+import { simpleSearchOpenLibrary, advancedSearchOpenLibrary, toggleAdvancedSearch, sortBooks, isLoading, noResults, clearResults } from '../store';
 import '../public/style/App.css'
 
 class App  extends Component {
@@ -18,74 +19,42 @@ class App  extends Component {
     author: "",
     title: "",
     year: "",
-    results: [],
     sortBy: "",
-    advanced: false,
-    loading: false,
-    noResults: false
   }
-  
-  async handleSubmit(event){
-    event.preventDefault()
-    this.setState({
-      loading: true,
-      noResults: false,
-      results: []
-    })
-    let queryString = !this.state.advanced ?  
-        `/api/openLibrary/?q=${this.state.term}` : 
-        `/api/openLibrary/?author=${this.state.author}&title=${this.state.title}&year=${this.state.year}&sort=${this.state.sortBy}`
-    try{
-      let response = await axios.get(queryString)  
-      let setOnState = Array.isArray(response.data) ? response.data : response.data.docs
-      console.log('RE', response.status)
-      if (!setOnState.length || response.status !== 200){
-        this.setState({
-          term: "",
-          author: "",
-          title: "",
-          year: "",
-          loading: false,
-          noResults: true,
-          results: []
-        })
-      } else {
-          this.setState({
-            term: "",
-            author: "",
-            title: "",
-            year: "",
-            results: setOnState,
-            sortBy: "",
-            loading: false,
-            noResults: false
-          })
-      }
-    } catch(err){
-        this.setState({
-          term: "",
-          author: "",
-          title: "",
-          year: "",
-          loading: false,
-          noResults: true,
-          results: []
-        })
-        console.log(err)
-    }
-  }
+
+  handleSubmit(event){
+     event.preventDefault()
+     this.props.clearResults()
+     this.props.isLoading(!this.props.state.loading)
+     this.props.noResults(false)
+     let results = this.props.state.advanced ? this.props.advancedSearch({
+          author: this.state.author,
+          title: this.state.title,
+          year: this.state.year,
+          sortBy: this.state.sortBy
+        }) : this.props.simpleSearch(this.state.term)
+
+      this.setState({
+        term: "",
+        author: "",
+        title: "",
+        year: "",
+        sortBy: ""
+      })
+   }
 
   handleReset(event){
     event.preventDefault()
+    this.props.isLoading(false)
+    this.props.noResults(false)
+    this.props.clearResults()
+
     this.setState({
       term: "",
       author: "",
       title: "",
       year: "",
       sortBy: "",
-      results: [],
-      loading: false,
-      noResults: false
     })
   }
 
@@ -96,26 +65,24 @@ class App  extends Component {
   }
 
   handleClick(event){
-    let sortedResults = sort(this.state.results, event.currentTarget.textContent)
+    let sortedResults = sort(this.props.state.results, event.currentTarget.textContent)
+    this.props.sortBooks(sortedResults)
     this.setState({
-      results: sortedResults,
       sortBy: event.currentTarget.textContent,
     }) 
   }
  
   handleAdvancedOption(){ 
-    this.setState({
-      advanced: !this.state.advanced
-    })
+    this.props.advancedToggle(!this.props.state.advanced)
   } 
  
   advancedSearchView(){
-    return this.state.advanced ? 
+    return this.props.state.advanced ? 
             <AdvancedSearch
               handleChange={(event) => this.handleChange(event)} 
               handleSubmit={(event) => this.handleSubmit(event)}
               handleAdvancedOption={(event) => this.handleAdvancedOption(event)}
-              handleClick={(event) => this.handleClick(event)} filterBy={this.state.filterBy}sortBy={this.state.sortBy}
+              handleClick={(event) => this.handleClick(event)} sortBy={this.state.sortBy}
               searchValTitle={this.state.title}
               searchValAuthor={this.state.author}
               searchValYear={this.state.year}
@@ -146,18 +113,32 @@ class App  extends Component {
             buttonName="Clear" 
             clickEvent={(event) => this.handleReset(event)} 
           />
-          {this.state.loading ? <LoadSpinner /> : "" }
-          {this.state.noResults ? <NoResults /> : "" }
+          {this.props.state.loading ? <LoadSpinner /> : "" }
+          {this.props.state.noResults ? <NoResults /> : "" }
           <div className="ui grid" style={{marginTop: '2em'}}> 
-          <DisplayResults results={this.state.results} /> 
+            <DisplayResults />
           </div>
-          
-            {/* <Icon icon="angle left"/>
-            <Icon icon="angle right"/> */}
         </div>
       </div>
     )
   }
 }
 
-export default App 
+const mapStateToProps = (state) => {
+  console.log('MAP', state)
+  return {state}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    simpleSearch: searchTerms => dispatch(simpleSearchOpenLibrary(searchTerms)),
+    advancedSearch: searchTerms => dispatch(advancedSearchOpenLibrary(searchTerms)),
+    sortBooks: books => dispatch(sortBooks(books)),
+    advancedToggle: bool => dispatch(toggleAdvancedSearch(bool)),
+    isLoading: bool => dispatch(isLoading(bool)),
+    noResults: bool => dispatch(noResults(bool)),
+    clearResults: () => dispatch(clearResults())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App) 
