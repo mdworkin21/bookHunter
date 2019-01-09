@@ -10,9 +10,9 @@ import '../public/style/App.css'
 import sort from '../../utilities/sort'
 import LoadSpinner from './LoadSpinner'
 import NoResults from './NoResults'
+import Title from './Title'
 import { simpleSearchOpenLibrary, advancedSearchOpenLibrary, toggleAdvancedSearch, sortBooks, isLoading, noResults, clearResults } from '../store';
 import '../public/style/App.css'
-import NavBar from './NavBar';
 
 class App  extends Component {
   state = {
@@ -102,9 +102,10 @@ class App  extends Component {
     let buttonDisable = !this.state.term && (!this.state.title && !this.state.author)
     return (
       <div>
-        <div className="title-container">
+        {/* <div className="title-container">
           <h1>Book Hunter</h1>
-        </div>
+        </div> */}
+        <Title />
         <div className="ui container" id="search-container">
           {advancedSearch}
           <Button 

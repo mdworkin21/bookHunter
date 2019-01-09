@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Title from './Title'
 import '../public/style/SingleView.css'
 
 const SingleView = (props) => {
@@ -9,6 +10,8 @@ const SingleView = (props) => {
       `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
   const opening = book.hasOwnProperty('first_sentence') ? book.first_sentence : 'Sorry, Unvailable' 
   return (
+    <React.Fragment>
+      <Title/>
     <div className="ui items single-view-container">
       <div className="item">
         <div className="image">
@@ -30,6 +33,7 @@ const SingleView = (props) => {
         </div>
   </div>
   </div>
+  </React.Fragment>
     )
   }
 

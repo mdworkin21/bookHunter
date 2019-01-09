@@ -1,6 +1,6 @@
 import React from 'react'
 import '../public/style/SortDropDown.css'
-//Might be good to refactor so you map our div options
+
 const SortDropDown = (props) => {
   let dropDownTag = props.sortBy ? props.sortBy : "Sort Results"
   return (
