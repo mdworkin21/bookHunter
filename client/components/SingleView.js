@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import '../public/style/SingleView.css'
 
 const SingleView = (props) => {
   const book = props.state.results[`${parseInt(props.match.params.id)}`]
@@ -8,20 +9,20 @@ const SingleView = (props) => {
       `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
   const opening = book.hasOwnProperty('first_sentence') ? book.first_sentence : 'Sorry, Unvailable' 
   return (
-    <div class="ui items" style={{backgroundColor: 'white'}}>
-      <div class="item">
-        <div class="image">
+    <div className="ui items single-view-container">
+      <div className="item">
+        <div className="image">
           <img src={displayImage} />
         </div>
-        <div class="content">
-          <a class="header">{book.title_suggest}</a>
-          <div class="description">
+        <div className="content" id="single-view-content">
+          <a className="header">{book.title_suggest}</a>
+          <div className="description">
             <p>By: {book.author_name}</p>
           </div>
-          <div class="meta">
+          <div className="meta">
             <span>Opening:</span> <p><em>{opening}</em></p>
           </div>
-          <div class="extra">
+          <div className="extra">
           <p>Publish: {book.first_publish_year}</p>
           <p>ISBN: {isbnNum}</p>
           <p>Number of Editions: {book.edition_count}</p>
