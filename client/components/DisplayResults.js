@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import '../public/style/DisplayResults.css'
+import {Link} from 'react-router-dom'
 
 const DisplayResults = (props) => {
   console.log('DISPLAY', props.state.results)
@@ -11,12 +12,12 @@ const DisplayResults = (props) => {
       let displayImage = isbnNum === "" ? "openBook.jpg" :
       `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
       return(
-        <div className="ui card" id="display-results-container" key={index}>
+        <div onClick={() => console.log('HELLO', el.title_suggest, el.author_name, index)}className="ui card" id="display-results-container" key={index}>
           <div className="image display-results-child" id="child-image">
             <img src={displayImage}/>
           </div>
           <div className="content" id="child-content">
-            <a className="header">{el.title_suggest}</a>
+            <Link to={`/details/${index}`} className="header">{el.title_suggest}</Link>
             <p>{el.subtitle}</p>
             <div className="meta">
               <span className="date">By: {el.author_name}</span>

@@ -4,6 +4,7 @@ module.exports = {
   output: {
     path: __dirname + '/client/public', 
     filename: 'bundle.js',
+    publicPath: '/'
   },
   devtool: 'source-maps',
   module: {
@@ -23,6 +24,9 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
 }
 

@@ -22,7 +22,7 @@ class App  extends Component {
     sortBy: "",
   }
 
-  handleSubmit(event){
+   handleSubmit(event){
      event.preventDefault()
      this.props.clearResults()
      this.props.isLoading(!this.props.state.loading)
@@ -105,7 +105,7 @@ class App  extends Component {
         <div className="ui container" id="search-container">
           {advancedSearch}
           <Button 
-            disabled={buttonDisable}  
+            disabled={buttonDisable} 
             buttonName="Submit" 
             clickEvent={(event) => this.handleSubmit(event)} 
           />

@@ -2,8 +2,6 @@ import React from 'react'
 import SortDropDown from './SortDropDown';
 import Button from './Button'
 
-
-
 const AdvancedSearch = (props) => {
   return (
     <div className="ui segment">
