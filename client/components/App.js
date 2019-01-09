@@ -12,6 +12,7 @@ import LoadSpinner from './LoadSpinner'
 import NoResults from './NoResults'
 import { simpleSearchOpenLibrary, advancedSearchOpenLibrary, toggleAdvancedSearch, sortBooks, isLoading, noResults, clearResults } from '../store';
 import '../public/style/App.css'
+import NavBar from './NavBar';
 
 class App  extends Component {
   state = {
@@ -100,8 +101,10 @@ class App  extends Component {
     let advancedSearch = this.advancedSearchView()
     let buttonDisable = !this.state.term && (!this.state.title && !this.state.author)
     return (
-      <div className="appBackground">
-        <h1>Book Hunter</h1>
+      <div>
+        <div className="title-container">
+          <h1>Book Hunter</h1>
+        </div>
         <div className="ui container" id="search-container">
           {advancedSearch}
           <Button 
@@ -119,7 +122,7 @@ class App  extends Component {
             <DisplayResults />
           </div>
         </div>
-      </div>
+       </div>
     )
   }
 }
