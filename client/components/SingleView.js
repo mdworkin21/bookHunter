@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Title from './Title'
 import '../public/style/SingleView.css'
+import {Redirect} from 'react-router-dom'
 
 const SingleView = (props) => {
   const book = props.state.results[`${parseInt(props.match.params.id)}`]
@@ -39,10 +40,7 @@ const SingleView = (props) => {
 
 
 const mapStateToProps = (state) => {
-  console.log('MAP', state)
   return {state}
 }
-
-
 
 export default connect(mapStateToProps)(SingleView)

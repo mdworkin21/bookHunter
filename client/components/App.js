@@ -102,9 +102,6 @@ class App  extends Component {
     let buttonDisable = !this.state.term && (!this.state.title && !this.state.author)
     return (
       <div>
-        {/* <div className="title-container">
-          <h1>Book Hunter</h1>
-        </div> */}
         <Title />
         <div className="ui container" id="search-container">
           {advancedSearch}
@@ -129,7 +126,6 @@ class App  extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('MAP', state)
   return {state}
 }
 
