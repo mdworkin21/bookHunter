@@ -29,13 +29,14 @@ To run this project locally, install using npm:
 $ npm run test
 
 ## Features for the future
-1. Set up log-in/authentication so users can save books to a db, mark them as favorites, will read, have read, wish list, etc. (Scaffolding for interaction with a postgreSQL db is already set up)
+1. Set up log-in/authentication so users can save books to a db, mark them as favorites, will read, have read, wish list, etc. (Scaffolding for interaction with a postgreSQL db is already set up.)
 2. Add server-side pagination. Helps user experience, especially on smaller devices. 
-3. Hook into Amazon (or equivalent) API to let users navigate to a place to buy the book.
-4. Where possible, provide users with links to free versions of the book (without violating copyright laws. Might work best for public domain.)
-5. Add social feature that allows users to suggest books to other users, have reading challenges, and leave reviews.
-6. Add more tests.
-7. Re-style results cards so image/content is consistently proportioned.
+3. Add navigation bar.
+4. Hook into Amazon (or equivalent) API to let users navigate to a place to buy the book.
+5. Where possible, provide users with links to free versions of the book (without violating copyright laws. Might work best for public domain.)
+6. Add social feature that allows users to suggest books to other users, have reading challenges, and leave reviews.
+7. Add more tests.
+8. Re-style results cards so image/content is consistently proportioned.
 
 ## Known Bugs/Issues
  1. If a user is viewing the details of a single book and then hits refresh, the page will turn blank.
