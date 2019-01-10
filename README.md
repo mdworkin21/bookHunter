@@ -1,4 +1,4 @@
-##Book Hunter
+## Book Hunter
 
 - Simple book search app created with Node.js, React, React-Redux, Express, and Semantic-UI. Users can search Open Library for books and details on those books.
 - Users can either do a normal search or advanced search.
@@ -7,14 +7,14 @@
 - Pro-tip: Sort functionality on advanecd search still works after results are returned. 
 - Once results are returned, user can click on title work to see a more detailed view.
 
-##Access
+## Access
 
 - GitHub: https://github.com/mdworkin21/bookHunter
 - Deployed Site: https://bookhunterapp.herokuapp.com/
 
 
 
-##Installation:
+## Installation:
 To run this project locally, install using npm:
 
 ``` 
@@ -24,10 +24,10 @@ To run this project locally, install using npm:
  $ npm run start-dev
 ```
 
-##For Tests
+## For Tests
 $ npm run test
 
-##Features for the future
+## Features for the future
 1. Set up log-in/authentication so users can save books to a db, mark them as favorites, will read, have read, wish list, etc. (Scaffolding for interaction with a postgreSQL db is already set up)
 2. Add server-side pagination so only 9-12 results are provided at a time. Helps user experience, especially on smaller devices. 
 3. Hook into Amazon (or equivalent) API to let users navigate to a place to buy the book.
