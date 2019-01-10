@@ -28,7 +28,7 @@ class App  extends Component {
     this.props.clearResults()
     this.props.isLoading(!this.props.state.loading)
     this.props.noResults(false)
-    let results = this.props.state.advanced ? 
+    this.props.state.advanced ? 
         this.props.advancedSearch({
           author: this.state.author,
           title: this.state.title,
