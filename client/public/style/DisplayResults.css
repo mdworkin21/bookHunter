@@ -5,6 +5,8 @@
     height: 27em;
     width: 166px;
     text-align: center;
+    word-wrap: break-word;
+    overflow: scroll
 } 
 
 /* Medium Screens */

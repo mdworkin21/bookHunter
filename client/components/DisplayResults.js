@@ -19,9 +19,9 @@ const DisplayResults = (props) => {
             <Link to={`/details/${index}`} className="header">{el.title_suggest}</Link>
             <p>{el.subtitle}</p>
             <div className="meta">
-              <span className="date">By: {el.author_name}</span>
+              <span className="date display-results-child">By: {el.author_name}</span>
             </div>
-            <div className="description">Published: {el.first_publish_year}</div>
+            <div className="description display-results-child">Published: {el.first_publish_year}</div>
           </div>
         </div>
       )

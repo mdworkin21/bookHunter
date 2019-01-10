@@ -32,7 +32,7 @@ const SingleView = (props) => {
           <p>Number of Editions: {book.edition_count}</p>
          </div>
         </div>
-  </div>
+    </div>
   </div>
   </React.Fragment>
     )
