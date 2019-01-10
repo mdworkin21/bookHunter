@@ -8,7 +8,7 @@ const SingleView = (props) => {
   //Looks at store to grab specific book, and displays results depending on what info exists 
   const book = props.state.results[`${parseInt(props.match.params.id)}`]
   const isbnNum = book.isbn ? book.isbn[0] : ""
-  const displayImage = isbnNum === "" ? "openBook.jpg" : `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
+  const displayImage = isbnNum === "" ? "/openBook.jpg" : `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
   const opening = book.hasOwnProperty('first_sentence') ? book.first_sentence : 'Sorry, Unvailable' 
 
   return (
