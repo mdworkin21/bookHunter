@@ -35,6 +35,7 @@ $ npm run test
 4. Where possible, provide users with links to free versions of the book (without violating copyright laws. Might work best for public domain.)
 5. Add social feature that allows users to suggest books to other users, have reading challenges, and leave reviews.
 6. Add more tests.
+7. Re-style results cards so image/content is consistently proportioned.
 
 ## Known Bugs/Issues
  1. If a user is viewing the details of a single book and then hits refresh, the page will turn blank.
