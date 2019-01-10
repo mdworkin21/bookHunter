@@ -3,13 +3,15 @@ import thunkMiddleware from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import axios from 'axios'
+import Err from '../components/Err';
 
 //Initializes State
 const initialState = {
   results: [],
   advanced: false,
   loading: false,
-  noResults: false
+  noResults: false,
+  error: ''
 }
 
 //Constants for Action Types
@@ -19,6 +21,7 @@ const ADVANCED_TOGGLE = 'ADVANCED_TOGGLE'
 const LOADING = 'LOADING'
 const NO_RESULTS = 'BOOLEAN'
 const CLEAR = 'CLEAR'
+const ERR = 'ERR'
 
 
 //Action Creators
@@ -63,12 +66,20 @@ export const clearResults = () => {
   }
 }
 
+export const flagErr = (errCode) => {
+  return {
+    type: ERR,
+    errCode
+  }
+}
 
 //Thunks for AJAX Calls
 export const simpleSearchOpenLibrary = (searchTerms) => {
   return async (dispatch) => {
     try{
+      console.log('TESTETET')
       const response = await axios.get(`/api/openLibrary/?q=${searchTerms}`)  
+      console.log('REST', response)
       const books = response.data.docs
       if (!books.length || response.status !== 200){
         dispatch(noResults(true))
@@ -79,6 +90,10 @@ export const simpleSearchOpenLibrary = (searchTerms) => {
         dispatch(isLoading(false))
       }
   } catch(err){
+    console.log(err.status)
+    
+      dispatch(flagErr(err))
+     
       console.log(err)
     }
   }
@@ -122,6 +137,8 @@ function reducer(state = initialState, action){
       return {...state, noResults: action.boolean}
     case CLEAR:
       return {...state, results: []}
+    case ERR:
+      return {...state, error: action.errCode}
     default: 
     return state
   }

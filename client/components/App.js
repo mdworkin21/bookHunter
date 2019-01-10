@@ -12,7 +12,9 @@ import NoResults from './NoResults'
 import Title from './Title'
 import { simpleSearchOpenLibrary, advancedSearchOpenLibrary, toggleAdvancedSearch, sortBooks, isLoading, noResults, clearResults } from '../store';
 import '../public/style/App.css'
+import Err from './Err';
 
+//Main component. Passes local state to forms. Local state here isn't necessary for rest of app, which is why it's not in redux store.
 class App  extends Component {
   state = {
     term: "",
@@ -47,6 +49,7 @@ class App  extends Component {
     })
   }
 
+  //Resets all state.
   handleReset(event){
     event.preventDefault()
     this.props.isLoading(false)
@@ -68,6 +71,7 @@ class App  extends Component {
     })
   }
 
+  //Users can use the sort function in two ways. One for their search. And once they have results, they can resort based on what they get.
   handleClick(event){
     let sortedResults = sort(this.props.state.results, event.currentTarget.textContent)
     this.props.sortBooks(sortedResults)
@@ -103,7 +107,7 @@ class App  extends Component {
   render(){
     let advancedSearch = this.advancedSearchView()
     let buttonDisable = !this.state.term && (!this.state.title && !this.state.author)
-    return (
+    return this.props.state.error !== '' ? <Err error={this.props.state.error}/> : (
       <div>
         <Title />
         <div className="ui container" id="search-container">
