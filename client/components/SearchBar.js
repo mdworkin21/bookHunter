@@ -2,7 +2,6 @@ import React from 'react'
 import Button from './Button'
 
 const SearchBar = (props) => {
-  console.log(props)
   return (
     <div className="ui segment">
       <form className="ui form" onSubmit={props.handleSubmit}>
@@ -11,7 +10,7 @@ const SearchBar = (props) => {
           <input type="text" name="term" value={props.searchValue} onChange={props.handleChange}/>
         </div>
       </form>
-        <Button buttonName="Advanced Search" clickEvent={(event) => props.handleAdvancedOption(event)}/>
+      <Button buttonName="Advanced Search" clickEvent={(event) => props.handleAdvancedOption(event)}/>
     </div> 
   )
 }

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import regeneratorRuntime from "regenerator-runtime";
-import axios from 'axios'
 import {connect} from 'react-redux'
 import SearchBar from './SearchBar';
 import Button from './Button';
@@ -23,26 +22,30 @@ class App  extends Component {
     sortBy: "",
   }
 
-   handleSubmit(event){
-     event.preventDefault()
-     this.props.clearResults()
-     this.props.isLoading(!this.props.state.loading)
-     this.props.noResults(false)
-     let results = this.props.state.advanced ? this.props.advancedSearch({
+  handleSubmit(event){
+    event.preventDefault()
+    //Dispatches to store to update globally relevant state
+    this.props.clearResults()
+    this.props.isLoading(!this.props.state.loading)
+    this.props.noResults(false)
+    let results = this.props.state.advanced ? 
+        this.props.advancedSearch({
           author: this.state.author,
           title: this.state.title,
           year: this.state.year,
           sortBy: this.state.sortBy
-        }) : this.props.simpleSearch(this.state.term)
+        }) : 
+        this.props.simpleSearch(this.state.term)
 
-      this.setState({
-        term: "",
-        author: "",
-        title: "",
-        year: "",
-        sortBy: ""
-      })
-   }
+    //Resets state only relevant to form components
+    this.setState({
+      term: "",
+      author: "",
+      title: "",
+      year: "",
+      sortBy: ""
+    })
+  }
 
   handleReset(event){
     event.preventDefault()

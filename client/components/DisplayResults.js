@@ -10,6 +10,7 @@ const DisplayResults = (props) => {
       let isbnNum = el.isbn ? el.isbn[0] : ""
       let displayImage = isbnNum === "" ? "openBook.jpg" :
       `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
+      
       return(
         <div className="ui card" id="display-results-container" key={index}>
           <div className="image display-results-child" id="child-image">

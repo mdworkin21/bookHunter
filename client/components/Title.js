@@ -4,8 +4,8 @@ import '../public/style/App.css'
 const Title = () => {
   return (
     <div className="title-container">
-    <h1>Book Hunter</h1>
-  </div>
+      <h1>Book Hunter</h1>
+    </div>
   )
 }
 
