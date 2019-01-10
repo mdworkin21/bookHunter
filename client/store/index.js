@@ -23,7 +23,6 @@ const NO_RESULTS = 'BOOLEAN'
 const CLEAR = 'CLEAR'
 const ERR = 'ERR'
 
-
 //Action Creators
 const getBooks = (books) => {
   return {
@@ -77,9 +76,7 @@ export const flagErr = (errCode) => {
 export const simpleSearchOpenLibrary = (searchTerms) => {
   return async (dispatch) => {
     try{
-      console.log('TESTETET')
       const response = await axios.get(`/api/openLibrary/?q=${searchTerms}`)  
-      console.log('REST', response)
       const books = response.data.docs
       if (!books.length || response.status !== 200){
         dispatch(noResults(true))
@@ -89,11 +86,10 @@ export const simpleSearchOpenLibrary = (searchTerms) => {
         dispatch(action)
         dispatch(isLoading(false))
       }
-  } catch(err){
-    console.log(err.status)
-    
+  } catch(err){  
+      dispatch(clearResults())
+      dispatch(isLoading(false))
       dispatch(flagErr(err))
-     
       console.log(err)
     }
   }
@@ -115,8 +111,8 @@ export const advancedSearchOpenLibrary = (searchTerms) => {
       }
   } catch(err){
       dispatch(clearResults())
-      dispatch(noResults(true))
       dispatch(isLoading(false))
+      dispatch(flagErr(err))
       console.log(err)
     }
   }
@@ -144,6 +140,7 @@ function reducer(state = initialState, action){
   }
 }
 
+//Creates Store
 const store = createStore(reducer, applyMiddleware(thunkMiddleware, createLogger()))
 
 export default store

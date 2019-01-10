@@ -41,6 +41,6 @@ $ npm run test
   - Cause: The reason this happens is because on refresh the Redux store gets dumped. Because the url relies on an id provided by the store, the page has no data to load. 
   - Solution: One solution is to use redux-persist to tap into local storage. Using the redux-persist autorehydrate function should help solve this issue. 
   2. Some images do not display.
-    -Cause: Some of the cover-image identifiers provided by the Open Library API result in a blank image. 
+    - Cause: Some of the cover-image identifiers provided by the Open Library API result in a blank image. 
     - Solution: Figure out way to identify times when an image is blank, and either (i) check other image identifiers provided by the API, or provide user with message/stock image.
 
