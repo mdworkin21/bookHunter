@@ -22,6 +22,7 @@ To run this project locally, install using npm:
  $ cd [into the project]
  $ npm i
  $ npm run start-dev
+ $ http://localhost:8080/
 ```
 
 ## For Tests
