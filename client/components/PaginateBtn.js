@@ -1,5 +1,6 @@
 import React from 'react'
 import '../public/style/PaginateBtn.css'
+
 const PaginateBtn = props => {
   return (
     <div className="paginate-btn">

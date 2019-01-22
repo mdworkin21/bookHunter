@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import '../public/style/DisplayResults.css'
 import {Link} from 'react-router-dom'
-import PaginateBtn from './PaginateBtn'
 
 const DisplayResults = (props) => {
   let results = props.state.results
@@ -30,7 +29,6 @@ const DisplayResults = (props) => {
         </div>
         )
       })}
-      <PaginateBtn />
     </React.Fragment>
   )
 }

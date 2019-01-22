@@ -127,6 +127,7 @@ class App  extends Component {
           <div className="ui grid" style={{marginTop: '2em'}}> 
           {this.props.state.results.length ? <DisplayResults /> : ""}
           </div>
+          {this.props.state.results.length ? <PaginateBtn /> : ""}
         </div>
        </div>
     )
