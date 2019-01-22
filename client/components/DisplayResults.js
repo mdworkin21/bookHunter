@@ -2,11 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import '../public/style/DisplayResults.css'
 import {Link} from 'react-router-dom'
+import PaginateBtn from './PaginateBtn'
 
 const DisplayResults = (props) => {
   let results = props.state.results
+  console.log(results)
   return (
-    results.map((el, index) =>{
+    <React.Fragment>
+    {results.map((el, index) =>{
       let isbnNum = el.isbn ? el.isbn[0] : ""
       let displayImage = isbnNum === "" ? "openBook.jpg" :
       `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
@@ -25,8 +28,10 @@ const DisplayResults = (props) => {
             <div className="description display-results-child">Published: {el.first_publish_year}</div>
           </div>
         </div>
-      )
-    })
+        )
+      })}
+      <PaginateBtn />
+    </React.Fragment>
   )
 }
 

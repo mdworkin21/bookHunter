@@ -13,6 +13,7 @@ import Title from './Title'
 import { simpleSearchOpenLibrary, advancedSearchOpenLibrary, toggleAdvancedSearch, sortBooks, isLoading, noResults, clearResults } from '../store';
 import '../public/style/App.css'
 import Err from './Err';
+import PaginateBtn from './PaginateBtn';
 
 //Main component. Passes local state to forms. Local state here isn't necessary for rest of app, which is why it's not in redux store.
 class App  extends Component {
@@ -124,7 +125,7 @@ class App  extends Component {
           {this.props.state.loading ? <LoadSpinner /> : "" }
           {this.props.state.noResults ? <NoResults /> : "" }
           <div className="ui grid" style={{marginTop: '2em'}}> 
-            <DisplayResults />
+          {this.props.state.results.length ? <DisplayResults /> : ""}
           </div>
         </div>
        </div>
