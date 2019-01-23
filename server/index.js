@@ -16,9 +16,9 @@ app.use(express.static(path.join(__dirname, '..', '/client/public')))
 //Api Routes
 app.use('/api', require('./api'))
 
-// Static HTML For When No API Route Matches
+// Redirects to homepage when no API reqs match
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '/client/public/'))
+  res.redirect('/')
 })
 
 //Handles 500 Errs
