@@ -1,13 +1,53 @@
+.paginate-btn-container{
+  display: flex;
+  position: absolute;
+  bottom: 1vh;
+  left: 33vw;
+  cursor: pointer;
+}
+
 .paginate-btn{
   color: white;
   position: relative;
-  top: 100%;
-  margin-top: 3em;
-  left: 45%;
-  cursor: pointer;
+  margin: 0 auto;
 }
 
 .paginate-btn:hover{
   color: grey;
+}
+
+/* Medium Screens */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { 
+  .paginate-btn-container{
+    display: flex;
+    position: absolute;
+    bottom: 10vh;
+    left: 44vw;
+    cursor: pointer;
+  }
+}
+
+
+/* Large Screens */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) { 
+  .paginate-btn-container{
+    display: flex;
+    position: absolute;
+    bottom: 10vh;
+    left: 45vw;
+    cursor: pointer;
+  }
   
 }
+
+/* Extra Large Screen */
+@media only screen and (min-width: 90.063em) { 
+  .paginate-btn-container{
+    display: flex;
+    position: absolute;
+    bottom: 10vh;
+    left: 45vw;
+    cursor: pointer;
+  }
+  
+} 

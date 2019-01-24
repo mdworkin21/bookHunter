@@ -1,13 +1,18 @@
+body {
+  position: relative;
+}
+
 /* Mobile */
 .single-view-container{
   position: relative;
   top: 3.5em;
   left: 2.75em;
   margin-left: 5em;
-  background-color: #f0ead6;
+  background-color: #e6b208;
   width: 80%;
   text-align: center;
 } 
+
 
 /* Medium Screens */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
@@ -16,7 +21,7 @@
     top: 23em;
     left: 6em;
     margin-left: 5em;
-    background-color: #f0ead6;
+    background-color: #e6b208;
     width: 80%;
     text-align: center;
   }
@@ -34,7 +39,7 @@
     top: 12em;
     left: 20em;
     margin-left: 5em;
-    background-color: #f0ead6;
+    background-color: #e6b208;
     width: 60%;
     text-align: center;
   }
@@ -52,7 +57,7 @@
     top: 20em;
     left: 25em;
     margin-left: 5em;
-    background-color: #f0ead6;
+    background-color: #e6b208;
     width: 60%;
     text-align: center;
   }

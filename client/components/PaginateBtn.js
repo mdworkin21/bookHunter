@@ -7,18 +7,18 @@ const PaginateBtn = props => {
   const prevVis = prev === undefined ? 'hidden' : 'visible'
   const nextVis = next === undefined ? 'hidden' : 'visible'
   return (
-    <div className="paginate-btn">
+    <div className="paginate-btn-container">
       <Link 
-        className="paginate-btn" 
+        className="paginate-btn"
         to={`/details/${id - 1}`} 
         style={{visibility: prevVis}}>
-        <i className="big chevron left icon"></i>
+        <i className="huge chevron left icon"></i>
       </Link>
       <Link 
-        className="paginate-btn" 
+        className="paginate-btn"
         to={`/details/${id + 1}`} 
         style={{visibility: nextVis}}>
-        <i className="big chevron right icon"></i>
+        <i className="huge chevron right icon"></i>
       </Link>
     </div>
   )

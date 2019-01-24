@@ -110,7 +110,6 @@ class App  extends Component {
     let buttonDisable = !this.state.term && (!this.state.title && !this.state.author)
     return this.props.state.error !== '' ? <Err error={this.props.state.error}/> : (
       <div>
-        <Title />
         <div className="ui container" id="search-container">
           {advancedSearch}
           <Button 
