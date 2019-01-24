@@ -12,7 +12,8 @@ const SingleView = (props) => {
   const isbnNum = book.isbn ? book.isbn[0] : ""
   const displayImage = isbnNum === "" ? "/openBook.jpg" : `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
   const opening = book.hasOwnProperty('first_sentence') ? book.first_sentence : 'Sorry, Unvailable' 
-
+  let nextBook = props.state.results[`${parseInt(props.match.params.id) + 1}`]
+  let prevBook = props.state.results[`${parseInt(props.match.params.id) -  1}`]
   return (
       <React.Fragment>
         <Title/>
@@ -37,7 +38,7 @@ const SingleView = (props) => {
             </div>
           </div>
         </div>
-          <PaginateBtn /> 
+          <PaginateBtn next={nextBook} prev={prevBook} id={parseInt(props.match.params.id)}/> 
     </React.Fragment>
     )
   }

@@ -4,4 +4,10 @@
   top: 100%;
   margin-top: 3em;
   left: 45%;
+  cursor: pointer;
+}
+
+.paginate-btn:hover{
+  color: grey;
+  
 }
