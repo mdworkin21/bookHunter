@@ -78,6 +78,7 @@ export const simpleSearchOpenLibrary = (searchTerms) => {
     try{
       const response = await axios.get(`/api/openLibrary/?q=${searchTerms}`)  
       const books = response.data.docs
+      console.log('BOOKS', books)
       if (!books.length || response.status !== 200){
         dispatch(noResults(true))
         dispatch(isLoading(false))
