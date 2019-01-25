@@ -11,7 +11,8 @@ const initialState = {
   advanced: false,
   loading: false,
   noResults: false,
-  error: ''
+  error: '',
+  user: '' //Will be an ID num
 }
 
 //Constants for Action Types
@@ -22,6 +23,10 @@ const LOADING = 'LOADING'
 const NO_RESULTS = 'BOOLEAN'
 const CLEAR = 'CLEAR'
 const ERR = 'ERR'
+
+//USER ACTION TYPE
+const GET_USER = 'GET_USER'
+const NEW_USER = 'NEW_USER'
 
 //Action Creators
 const getBooks = (books) => {
@@ -69,6 +74,13 @@ export const flagErr = (errCode) => {
   return {
     type: ERR,
     errCode
+  }
+}
+//USER ACTION CREATOR
+export const getUser = (user) => {
+  return {
+    type: GET_USER,
+    user
   }
 }
 
@@ -119,6 +131,42 @@ export const advancedSearchOpenLibrary = (searchTerms) => {
   }
 }
 
+//USER THUNK
+export const getUserFromPassport = () => {
+  return async (dispatch) => {
+    try{
+      const response = await axios.get('/authenticate/getUser')
+      const user = response.data
+      const action = getUser(user)
+      dispatch(action)
+    }catch(err){
+      console.log(err)
+    }
+  }
+}
+
+export const createNewUser = (user) => {
+  return async(dispatch) => {
+    try{
+      const newUser = await axios.post('/authenticate/newUser', {
+        name: user.name,
+        email: user.email,
+        password: user.password
+      })
+
+      if (newUser.status === 201){
+        getUserFromPassport(newUser.data.id)
+      }
+    } catch(err){
+        console.log(err)
+    }
+  }
+}
+
+
+
+
+
 //Reducer 
 function reducer(state = initialState, action){
   switch(action.type){
@@ -136,6 +184,8 @@ function reducer(state = initialState, action){
       return {...state, results: []}
     case ERR:
       return {...state, error: action.errCode}
+      case GET_USER:
+      return {...state, user: action.user.id}
     default: 
     return state
   }
