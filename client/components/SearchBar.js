@@ -3,7 +3,7 @@ import Button from './Button'
 
 const SearchBar = (props) => {
   return (
-    <div className="ui segment">
+    <div className="ui segment" style={{backgroundColor: '#FFFFF0'}}>
       <form className="ui form" onSubmit={props.handleSubmit}>
         <div className="field">
           <label>Enter Search Terms Below</label>
