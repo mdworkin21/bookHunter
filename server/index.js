@@ -3,17 +3,51 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const morgan = require('morgan')
 const app = express()
+const passport = require('passport')
+const session = require('express-session')
+const db = require('./db/database')
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
+const sessionStore = new SequelizeStore({db})
+const User = require('./db/models/User')
 
+//Passport Registration
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
 
-//MiddleWare
+passport.deserializeUser(async (id, done) => {
+  try{
+    const user = await User.findById(id)
+    done(null, user)
+  } catch(err){
+    done(err)
+  }
+})
+
+//Logging MiddleWare
 app.use(morgan('dev'))
+
+//BodyParsing MiddleWare
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+
+//Session MiddleWare with Passport
+app.use(session({
+  cookieName: 'session',
+  secret: process.env.SESSION_SECRET || 'BookHunter',
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Static Middleware
 app.use(express.static(path.join(__dirname, '..', '/client/public')))
 
 //Api Routes
+app.use('/authenticate', require('./authenticate'))
 app.use('/api', require('./api'))
 
 // Redirects to homepage when no API reqs match

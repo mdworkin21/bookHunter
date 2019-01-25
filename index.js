@@ -4,7 +4,8 @@ const {db} = require('./server/db/models')
 
 
 //Syncs with DB and listens for connections on host and port
-db.sync()
+//Put in {force: true} to update heroku db
+db.sync({force: true})
   .then(() => {
     console.log('db synced.')
     app.listen(PORT, () => {
