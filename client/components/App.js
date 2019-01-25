@@ -9,7 +9,6 @@ import '../public/style/App.css'
 import sort from '../../utilities/sort'
 import LoadSpinner from './LoadSpinner'
 import NoResults from './NoResults'
-import Title from './Title'
 import { simpleSearchOpenLibrary, advancedSearchOpenLibrary, toggleAdvancedSearch, sortBooks, isLoading, noResults, clearResults } from '../store';
 import '../public/style/App.css'
 import Err from './Err';
@@ -109,8 +108,8 @@ class App  extends Component {
     let advancedSearch = this.advancedSearchView()
     let buttonDisable = !this.state.term && (!this.state.title && !this.state.author)
     return this.props.state.error !== '' ? <Err error={this.props.state.error}/> : (
-      <div>
-        <div className="ui container" id="search-container">
+      <div id="search-container">
+        <div className="ui container" >
           {advancedSearch}
           <Button 
             disabled={buttonDisable} 

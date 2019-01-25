@@ -1,22 +1,17 @@
-.title-container{
+#search-container{
   position: relative;
-  left: 0%;
-  background-color: black;
-  color: #f4f0db;
-  text-align: center;
-  margin-bottom: 3em;
+  top: 4em;
+  flex-direction: column;
 }
 
-h1{
-  font-size: 48px;
-
-}
 
 /* Medium Screens */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
   #search-container{
     position: relative;
     top: 4em;
+    left: 25.5vw;
+    width: 65vw;
   }
 }
 
@@ -26,6 +21,8 @@ h1{
   #search-container{
     position: relative;
     top: 6em;
+    left: 31.5vw;
+    width: 50vw;
   }
 }
 
@@ -34,5 +31,7 @@ h1{
   #search-container{
     position: relative;
     top: 6em;
+    left: 30.5vw;
+    width: 50vw;
   }
 }  

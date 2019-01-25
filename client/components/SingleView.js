@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Title from './Title'
+import Title from './Menu'
 import '../public/style/SingleView.css'
 import {Redirect} from 'react-router-dom'
 import App from './App'

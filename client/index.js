@@ -5,11 +5,11 @@ import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import App from './components/App'
 import SingleView from './components/SingleView'
-import Title from './components/Title'
+import Menu from './components/Menu'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Title/>
+    <Menu />
     <Router>
       <Switch>
         <Route path='/' exact component={App} />
