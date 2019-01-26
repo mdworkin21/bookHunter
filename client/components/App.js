@@ -9,7 +9,8 @@ import '../public/style/App.css'
 import sort from '../../utilities/sort'
 import LoadSpinner from './LoadSpinner'
 import NoResults from './NoResults'
-import { simpleSearchOpenLibrary, advancedSearchOpenLibrary, toggleAdvancedSearch, sortBooks, isLoading, noResults, clearResults } from '../store';
+import { simpleSearchOpenLibrary, advancedSearchOpenLibrary } from '../redux/thunks/bookSearch';
+import {toggleAdvancedSearch, sortBooks, isLoading, noResults, clearResults} from '../redux/actions/bookSearch'
 import '../public/style/App.css'
 import Err from './Err';
 import PaginateBtn from './PaginateBtn';

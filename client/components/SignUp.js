@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { createNewUser } from '../store'
+import { createNewUser } from '../redux/store'
 import {connect} from 'react-redux'
 import regeneratorRuntime, { async } from "regenerator-runtime";
 
