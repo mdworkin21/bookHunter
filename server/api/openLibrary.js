@@ -11,6 +11,8 @@ router.get('/:search?', async (req, res, next) => {
    let response = await axios.get(`https://openlibrary.org/search.json?${queryString}`) 
    let sortedResponse = req.query.sort ? sortResults(response.data.docs, req.query.sort) : response.data
    res.status(200).json(sortedResponse)
+        //For TESTING ERRMESSAGE
+        //    res.sendStatus(500)
     } catch(err){
         next(err)
     }
