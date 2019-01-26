@@ -17,10 +17,8 @@ export default function resultsReducer(state = initialState, action){
       return {...state, noResults: action.boolean}
     case CLEAR:
       return {...state, results: []}
-      // case GET_USER:
-      // return {...state, user: action.user.id}
     default: 
-    return state
+      return state
   }
 }
 

@@ -1,3 +1,5 @@
+//NOTE: Could probably move some of these out of here, those related to searchState reducer
+
 //Constants for Action Types
 export const GET_BOOKS = 'GET_BOOKS'
 export const SORT_BOOKS = 'SORT_BOOKS'
