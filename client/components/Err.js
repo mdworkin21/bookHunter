@@ -8,7 +8,6 @@ const Err = (props) => {
     } else if (props.error.response.status === 400){
       message = "This might be something on your end, check internet connection."
     }
-
   return (
     <div className="ui negative message no-result-container">
       <div className="header no-result-content">We're sorry, there's a {props.error.response.status} error. </div>

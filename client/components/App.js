@@ -29,9 +29,9 @@ class App  extends Component {
     event.preventDefault()
     //Dispatches to store to update globally relevant state
     this.props.clearResults()
-    this.props.isLoading(!this.props.state.loading)
+    this.props.isLoading(!this.props.searchState.loading)
     this.props.noResults(false)
-    this.props.state.advanced ? 
+    this.props.searchState.advanced ? 
         this.props.advancedSearch({
           author: this.state.author,
           title: this.state.title,
@@ -74,7 +74,7 @@ class App  extends Component {
 
   //Users can use the sort function in two ways. One for their search. And once they have results, they can resort based on what they get.
   handleClick(event){
-    let sortedResults = sort(this.props.state.results, event.currentTarget.textContent)
+    let sortedResults = sort(this.props.results.results, event.currentTarget.textContent)
     this.props.sortBooks(sortedResults)
     this.setState({
       sortBy: event.currentTarget.textContent,
@@ -82,11 +82,11 @@ class App  extends Component {
   }
  
   handleAdvancedOption(){ 
-    this.props.advancedToggle(!this.props.state.advanced)
+    this.props.advancedToggle(!this.props.searchState.advanced)
   } 
  
   advancedSearchView(){
-    return this.props.state.advanced ? 
+    return this.props.searchState.advanced ? 
             <AdvancedSearch
               handleChange={(event) => this.handleChange(event)} 
               handleSubmit={(event) => this.handleSubmit(event)}
@@ -108,7 +108,7 @@ class App  extends Component {
   render(){
     let advancedSearch = this.advancedSearchView()
     let buttonDisable = !this.state.term && (!this.state.title && !this.state.author)
-    return this.props.state.error !== '' ? <Err error={this.props.state.error}/> : (
+    return this.props.searchState.error !== '' ? <Err error={this.props.searchState.error}/> : (
       <div id="search-container">
         <div className="ui container" >
           {advancedSearch}
@@ -121,12 +121,12 @@ class App  extends Component {
             buttonName="Clear" 
             clickEvent={(event) => this.handleReset(event)} 
           />
-          {this.props.state.loading ? <LoadSpinner /> : "" }
-          {this.props.state.noResults ? <NoResults /> : "" }
+          {this.props.searchState.loading ? <LoadSpinner /> : "" }
+          {this.props.results.noResults ? <NoResults /> : "" }
           <div className="ui grid" style={{marginTop: '2em'}}> 
-          {this.props.state.results.length ? <DisplayResults /> : ""}
+          {this.props.results.results.length ? <DisplayResults /> : ""}
           </div>
-          {this.props.state.results.length ? <PaginateBtn /> : ""}
+          {this.props.results.results.length ? <PaginateBtn /> : ""}
         </div>
        </div>
     )
@@ -134,7 +134,11 @@ class App  extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {state}
+  console.log("STATE", state)
+  return {
+    results: state.results,
+    searchState: state.searchState
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {

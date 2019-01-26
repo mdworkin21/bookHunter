@@ -25,9 +25,8 @@ class DisplayResults extends Component {
   }
 
   render(){
-  let results = this.props.state.results
+  let results = this.props.results.results
   let currentResults = results.slice(this.state.start, this.state.end)
-  
   return (
     <React.Fragment>
     {currentResults.map((el, index) =>{
@@ -59,7 +58,8 @@ class DisplayResults extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {state}
+  return {
+    results: state.results}
 }
 
 export default connect(mapStateToProps)(DisplayResults)

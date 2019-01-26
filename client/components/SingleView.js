@@ -8,12 +8,12 @@ import PaginateBtn from './PaginateBtn';
 
 const SingleView = (props) => {
   //Looks at store to grab specific book, and displays results depending on what info exists 
-  const book = props.state.results[`${parseInt(props.match.params.id)}`]
+  const book = props.results.results[`${parseInt(props.match.params.id)}`]
   const isbnNum = book.isbn ? book.isbn[0] : ""
   const displayImage = isbnNum === "" ? "/openBook.jpg" : `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
   const opening = book.hasOwnProperty('first_sentence') ? book.first_sentence : 'Sorry, Unvailable' 
-  let nextBook = props.state.results[`${parseInt(props.match.params.id) + 1}`]
-  let prevBook = props.state.results[`${parseInt(props.match.params.id) -  1}`]
+  let nextBook = props.results.results[`${parseInt(props.match.params.id) + 1}`]
+  let prevBook = props.results.results[`${parseInt(props.match.params.id) -  1}`]
   return ( 
        <div>
           <div className="ui items single-view-container">
@@ -44,7 +44,9 @@ const SingleView = (props) => {
 
 
 const mapStateToProps = (state) => {
-  return {state}
+  return {
+    results: state.results
+  }
 }
 
 export default connect(mapStateToProps)(SingleView)
