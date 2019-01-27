@@ -1,25 +1,27 @@
 /* Mobile */
 #display-results-container{
-  margin-left: 8em;
+    margin-left: 8em;
     background-color: #f0ead6;
     height: 27em;
     width: 166px;
     text-align: center;
     word-wrap: break-word;
-    overflow: scroll
+    overflow: hidden;
 } 
+
+
+
 
 /* Medium Screens */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
   #display-results-container{
-    margin-left: 4em;
+      margin-left: 4em;
       background-color: #f0ead6;
       height: 27em;
       width: 166px;
       text-align: center;
   } 
 }
-
 
 
 
