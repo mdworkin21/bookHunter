@@ -15,7 +15,7 @@ const SingleView = (props) => {
   let nextBook = props.results.results[`${parseInt(props.match.params.id) + 1}`]
   let prevBook = props.results.results[`${parseInt(props.match.params.id) -  1}`]
   return ( 
-       <div>
+       <div className="main-div">
           <div className="ui items single-view-container">
             <div className="item">
               <div className="image">

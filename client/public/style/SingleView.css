@@ -1,15 +1,19 @@
-body {
+/* body {
   position: relative;
+} */
+
+.main-div{
+  width: 100%;
 }
 
 /* Mobile */
 .single-view-container{
   position: relative;
   top: 3.5em;
-  left: 2.75em;
+  left: 3.75em;
   margin-left: 5em;
   background-color: #e6b208;
-  width: 80%;
+  width: 70%;
   text-align: center;
 } 
 
@@ -19,10 +23,10 @@ body {
   .single-view-container{
     position: relative;
     top: 23em;
-    left: 6em;
+    left: 16em;
     margin-left: 5em;
     background-color: #e6b208;
-    width: 80%;
+    width: 70%;
     text-align: center;
   }
 
@@ -37,10 +41,10 @@ body {
   .single-view-container{
     position: relative;
     top: 12em;
-    left: 20em;
+    left: 34em;
     margin-left: 5em;
     background-color: #e6b208;
-    width: 60%;
+    width: 40%;
     text-align: center;
   }
 
@@ -55,10 +59,10 @@ body {
   .single-view-container{
     position: relative;
     top: 20em;
-    left: 25em;
+    left: 41em;
     margin-left: 5em;
     background-color: #e6b208;
-    width: 60%;
+    width: 40%;
     text-align: center;
   }
 
