@@ -9,7 +9,7 @@
 /* Mobile */
 .single-view-container{
   position: relative;
-  top: 3.5em;
+  top: 12.5em;
   left: 3.75em;
   margin-left: 5em;
   background-color: #e6b208;
@@ -22,8 +22,8 @@
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
   .single-view-container{
     position: relative;
-    top: 23em;
-    left: 16em;
+    top: 28em;
+    left: 13em;
     margin-left: 5em;
     background-color: #e6b208;
     width: 70%;
@@ -59,7 +59,7 @@
   .single-view-container{
     position: relative;
     top: 20em;
-    left: 41em;
+    left: 44em;
     margin-left: 5em;
     background-color: #e6b208;
     width: 40%;
