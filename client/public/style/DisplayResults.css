@@ -1,7 +1,10 @@
 /* Mobile */
+
 #display-results-container{
     margin-left: 8em;
-    background-color: #f0ead6;
+    margin-top: 1em;
+    background-color: white;
+    opacity: .9;
     height: 27em;
     width: 166px;
     text-align: center;
@@ -9,14 +12,16 @@
     overflow: hidden;
 } 
 
-
+#first{
+  top: 3vh;
+ 
+}
 
 
 /* Medium Screens */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
   #display-results-container{
       margin-left: 4em;
-      background-color: #f0ead6;
       height: 27em;
       width: 166px;
       text-align: center;

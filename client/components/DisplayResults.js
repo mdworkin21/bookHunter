@@ -36,11 +36,10 @@ class DisplayResults extends Component {
       let isbnNum = el.isbn ? el.isbn[0] : ""
       let displayImage = isbnNum === "" ? "openBook.jpg" :
       `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
-
+      
       return(
-        <div className="ui card" id="display-results-container" key={index}>
+        <div className="ui card" id='display-results-container' key={index}>
           <div className="image" id="child-image">
-            {/* <img src={displayImage}/> */}
             <Image 
                 src={displayImage}
                 height={160}
