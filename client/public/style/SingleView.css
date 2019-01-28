@@ -12,7 +12,8 @@
   top: 12.5em;
   left: 3.75em;
   margin-left: 5em;
-  background-color: #e6b208;
+  background-color: white;
+  opacity: .9;
   width: 70%;
   text-align: center;
 } 

@@ -4,7 +4,7 @@ import Button from './Button'
 
 const AdvancedSearch = (props) => {
   return (
-    <div className="ui segment">
+    <div className="ui segment" style={{backgroundColor: '#FFFFF0'}}>
       <form className="ui form searchBar" onSubmit={props.handleSubmit}>
         <div className="field">
           <label>Advanced Search</label>
