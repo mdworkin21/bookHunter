@@ -77,7 +77,8 @@ const style = {
 
 const mapStateToProps = (state) => {
   return {
-    results: state.results}
+    results: state.results
+  }
 }
 
 export default connect(mapStateToProps)(DisplayResults)
