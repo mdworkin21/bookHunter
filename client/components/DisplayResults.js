@@ -57,9 +57,9 @@ class DisplayResults extends Component {
         </div>
         )
       })}
+      <i className="huge chevron left icon" id="left-arrow" onClick={() => this.handleClick('prev')}></i>
+      <i className="huge chevron right icon" id="right-arrow" onClick={() => this.handleClick('next')}></i>
       </div>
-      <i className="huge chevron left icon" onClick={() => this.handleClick('prev')}></i>
-      <i className="huge chevron right icon" onClick={() => this.handleClick('next')}></i>
     </React.Fragment>
    )
   }
