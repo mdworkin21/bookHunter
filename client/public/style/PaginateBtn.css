@@ -85,13 +85,13 @@
 
   #paginate-left{
     position: fixed;
-    top: 46%;
+    top: 38%;
     left: 24%;
   }
   #paginate-right{
     position: fixed;
-    top: 46%;
-    right: 16%;
+    top: 38%;
+    right: 19%;
   }
   
 } 
