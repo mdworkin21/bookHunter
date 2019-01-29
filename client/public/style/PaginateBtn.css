@@ -16,6 +16,17 @@
   color: grey;
 }
 
+#paginate-left{
+  position: fixed;
+  top: 12%;
+  left: 32%;
+}
+#paginate-right{
+  position: fixed;
+  top: 12%;
+  right: 34%;
+}
+
 /* Medium Screens */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
   .paginate-btn-container{
@@ -24,6 +35,17 @@
     bottom: 10vh;
     left: 44vw;
     cursor: pointer;
+  }
+
+  #paginate-left{
+    position: fixed;
+    top: 64%;
+    left: 49%;
+  }
+  #paginate-right{
+    position: fixed;
+    top: 64%;
+    right: 34%;
   }
 }
 
@@ -37,6 +59,17 @@
     left: 45vw;
     cursor: pointer;
   }
+
+  #paginate-left{
+    position: fixed;
+    top: 46%;
+    left: 24%;
+  }
+  #paginate-right{
+    position: fixed;
+    top: 46%;
+    right: 16%;
+  }
   
 }
 
@@ -48,6 +81,17 @@
     bottom: 10vh;
     left: 45vw;
     cursor: pointer;
+  }
+
+  #paginate-left{
+    position: fixed;
+    top: 46%;
+    left: 24%;
+  }
+  #paginate-right{
+    position: fixed;
+    top: 46%;
+    right: 16%;
   }
   
 } 

@@ -10,12 +10,14 @@ const PaginateBtn = props => {
     <div className="paginate-btn-container">
       <Link 
         className="paginate-btn"
+        id="paginate-left"
         to={`/details/${id - 1}`} 
         style={{visibility: prevVis}}>
         <i className="huge chevron left icon"></i>
       </Link>
       <Link 
         className="paginate-btn"
+        id="paginate-right"
         to={`/details/${id + 1}`} 
         style={{visibility: nextVis}}>
         <i className="huge chevron right icon"></i>
