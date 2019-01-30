@@ -3,21 +3,24 @@ import { createNewUser } from '../redux/thunks/users'
 import {connect} from 'react-redux'
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import '../public/style/SignUp.css'
-
+import {Redirect} from 'react-router-dom'
 
 class SignUp extends Component {
+  //Needs to be fixed
   state = {
     userName: '',
     email: '',
     password: '',
-    repassword: ''
+    repassword: '',
+    logInUserName: '',
+    logInPassword: '',
+    redirect: false
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log(this.state.userName)
   }
 
    handleSubmit = async (event) =>{
@@ -39,27 +42,16 @@ class SignUp extends Component {
     }  
   }
 
-  //Just a draft of styling
+  handleRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
   render(){
-    // return(
-    //   <form className="ui form" onSubmit={this.handleSubmit}>
-    //     <div className="field">
-    //       <label>Name</label>
-    //       <input type="text" name="name" placeholder="Name" onChange={this.handleChange} value={this.state.name}/>
-    //     </div>
-    //     <div className="field">
-    //       <label>Email</label>
-    //       <input type="text" name="email" placeholder="Email" onChange={this.handleChange} value={this.state.email}/>
-    //     </div>
-    //     <div className="field">
-    //       <label>Password</label>
-    //       <input type="text" name="password" placeholder="Password" onChange={this.handleChange} value={this.state.password}/>
-    //     </div>
-    //     <button className="ui button" type="submit">Submit</button>
-    //   </form>
-    // )
-    return(
-      <form id="login-box" onSubmit={this.handleSubmit}>
+    return this.state.redirect ? <Redirect to='/' /> : (
+      <div id="login-box">
+      <form  onSubmit={this.handleSubmit}>
         <div className="left-box">
           <h1>Sign Up</h1>
           <input type="text" name="userName" placeholder="Username" onChange={this.handleChange} value={this.state.userName} />
@@ -67,8 +59,20 @@ class SignUp extends Component {
           <input type="password" name="password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
           <input type="password" name="repassword" placeholder="Retype Password" onChange={this.handleChange} value={this.state.repassword} />
           <input type="submit" name="signup-btn" value="Sign Up"/>
+           <input type="submit" id="guest" value="Continue as Guest" onClick={this.handleRedirect}/>
+        </div>
+        </form>
+
+        <form onSubmit={this.handleLogin}>
+        <div className="right-box">
+          <h1 id="loginTitle">Log In</h1>
+          <input type="text" className="loginInput" name="logInUserName" placeholder="Username" onChange={this.handleChange} value={this.state.logInUserName} />
+          <input type="password" className="loginInput" name="logInPassword" placeholder="Password" onChange={this.handleChange} value={this.state.logInPassword} />
+          <input type="submit" className="loginBtn" name="login-in" value="Log In" />
         </div>
       </form>
+      <div className='or'>Or</div>
+      </div>
     )
   }
 }

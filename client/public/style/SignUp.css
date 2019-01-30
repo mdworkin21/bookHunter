@@ -1,10 +1,9 @@
 #login-box {
   position: relative;
-  top: 10vh;
-  left: 4.5vw;
+  top: 13vh;
   margin: 5% auto;
   height: 400px;
-  width: 300px;
+  width: 600px;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   font-family: sans-serif; 
@@ -22,10 +21,25 @@
   height: 400px;
 }
 
+.right-box
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 400px;
+    background-image: url('https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-022.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
 h1{
   margin: 0 0 20px 0;
   font-weight: 300;
   font-size: 28px;
+  text-align: center;
 }
 
 input[type="text"], input[type="password"]{
@@ -45,6 +59,8 @@ input[type="text"], input[type="password"]{
 }
 
 input[type="submit"]{
+  position: relative;
+  left: 48px;
   margin-bottom: 28px;
   width: 120px;
   height: 32px;
@@ -59,7 +75,43 @@ input[type="submit"]{
   cursor: pointer;
 }
 
+.loginBtn{
+  top: 101px;
+}
+
+.loginInput{
+  position: relative;
+  top: 51px;
+}
+
 input[type="submit"]:hover, input[type="submit"]:focus{
   background: #ff5722;
   transition: 0.2s ease;
+}
+
+
+.or
+{
+    position: absolute;
+    top: 180px;
+    left: 280px;
+    width: 40px;
+    height: 40px;
+    background: #efefef;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    line-height: 40px;
+    text-align: center;
+    font-weight: 700;
+}
+
+#guest{
+  cursor: pointer;
+  position: relative;
+  bottom: 20px;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  background: #18a2cc;
+  text-align: center;
+  padding: 0;
 }
