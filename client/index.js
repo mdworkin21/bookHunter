@@ -10,10 +10,9 @@ import SignUp from './components/SignUp'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Menu />
     <Router>
       <Switch>
-        <Route exact path='/' component={App} />
+        <Route exact path='/' component={App}/>
         <Route exact path='/details/:id' component={SingleView} />
         <Route exact path='/signup' component={SignUp} />
       </Switch>

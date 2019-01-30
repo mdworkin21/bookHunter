@@ -5,6 +5,7 @@ import '../public/style/SingleView.css'
 import {Redirect} from 'react-router-dom'
 import App from './App'
 import PaginateBtn from './PaginateBtn';
+import Menu from './Menu'
 
 const SingleView = (props) => {
   //Looks at store to grab specific book, and displays results depending on what info exists 
@@ -15,6 +16,9 @@ const SingleView = (props) => {
   let nextBook = props.results.results[`${parseInt(props.match.params.id) + 1}`]
   let prevBook = props.results.results[`${parseInt(props.match.params.id) -  1}`]
   return ( 
+    <React.Fragment>
+      <Menu />
+    
        <div className="main-div">
           <div className="ui items single-view-container">
             <div className="item">
@@ -39,6 +43,7 @@ const SingleView = (props) => {
           </div>
           <PaginateBtn id='test' next={nextBook} prev={prevBook} id={parseInt(props.match.params.id)}/> 
     </div>
+    </React.Fragment>
     )
   }
 

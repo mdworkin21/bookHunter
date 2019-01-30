@@ -11,6 +11,10 @@
   flex-direction: column;
 }
 
+.menu-links{
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
   #menu-container{
     width: 15%;
