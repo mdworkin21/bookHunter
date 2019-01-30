@@ -3,7 +3,7 @@ const Sequelize = require('sequelize')
 
 //User Model
 const User = db.define('users', {
-  name: {
+  userName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {

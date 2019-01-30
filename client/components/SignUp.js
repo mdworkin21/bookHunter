@@ -17,6 +17,7 @@ class SignUp extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+    console.log(this.state.userName)
   }
 
    handleSubmit = async (event) =>{
@@ -58,16 +59,16 @@ class SignUp extends Component {
     //   </form>
     // )
     return(
-      <div id="login-box">
-        <div className="left-box" onSubmit={this.handleSubmit}>
+      <form id="login-box" onSubmit={this.handleSubmit}>
+        <div className="left-box">
           <h1>Sign Up</h1>
           <input type="text" name="userName" placeholder="Username" onChange={this.handleChange} value={this.state.userName} />
           <input type="text" name="email" placeholder="Email" onChange={this.handleChange} value={this.state.email} />
           <input type="password" name="password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
           <input type="password" name="repassword" placeholder="Retype Password" onChange={this.handleChange} value={this.state.repassword} />
-          <input type="submit" name="signup-btn" value="Sign Up" onClick={this.handleSubmit}/>
+          <input type="submit" name="signup-btn" value="Sign Up"/>
         </div>
-      </div>
+      </form>
     )
   }
 }

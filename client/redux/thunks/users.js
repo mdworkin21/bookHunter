@@ -20,7 +20,7 @@ export const createNewUser = (user) => {
   return async(dispatch) => {
     try{
       const newUser = await axios.post('/authenticate/newUser', {
-        name: user.name,
+        userName: user.userName,
         email: user.email,
         password: user.password
       })
