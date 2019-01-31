@@ -1,4 +1,4 @@
-import regeneratorRuntime from "regenerator-runtime";
+import regeneratorRuntime, { async } from "regenerator-runtime";
 import axios from 'axios'
 import { getUser } from '../actions/users'
 
@@ -26,6 +26,21 @@ export const createNewUser = (user) => {
       })
       if (newUser.status === 201){
         dispatch(getUserFromPassport(newUser.data.id))
+      }
+    } catch(err){
+        console.log(err)
+    }
+  }
+}
+
+export const logInUser = (user) => {
+  return async (dispatch) => {
+    try{
+      const loggedInUser = await axios.post('/authenticate/checkUser', {user})
+      if (loggedInUser.status === 200){
+        const user = loggedInUser.data
+        const action = getUser(user)
+        dispatch(action)
       }
     } catch(err){
         console.log(err)

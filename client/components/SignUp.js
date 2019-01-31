@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { createNewUser } from '../redux/thunks/users'
+import { createNewUser, logInUser } from '../redux/thunks/users'
 import {connect} from 'react-redux'
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import '../public/style/SignUp.css'
@@ -39,7 +39,6 @@ class SignUp extends Component {
         repassword: ''
       }) 
 
-      //IF LOGIN WORKS OR SIGNUP WORKS REDIRECT TO HOME PAGE WITH SIGNIN
 
     } catch(err){
         console.log(err)
@@ -49,7 +48,7 @@ class SignUp extends Component {
   componentDidUpdate(prevProps){
     if (this.props.user !== prevProps.user){
       this.handleRedirect()
-    }
+    } 
   }
 
   handleRedirect = () => {
@@ -58,8 +57,21 @@ class SignUp extends Component {
     })
   }
 
+   handleLogin = async (event) => {
+    event.preventDefault()
+
+    try{
+      await this.props.logInUser({
+        userName: this.state.logInUserName,
+        password: this.state.logInPassword
+      })
+    }catch(err){
+     console.log(err.status)
+      console.log(err)
+    }
+  }
+
   render(){
-    console.log(this.props.user)
     return this.state.redirect ? <Redirect to='/' /> : (
       <React.Fragment>
         <Menu />
@@ -94,12 +106,12 @@ class SignUp extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createUser: (user) => dispatch(createNewUser(user))
+    createUser: (user) => dispatch(createNewUser(user)),
+    logInUser: (user) => dispatch(logInUser(user))
     }
 }
 
 const mapStateToProps = (state) => {
-  console.log('MAP',state.user)
   return {
     user: state.user
   }

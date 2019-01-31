@@ -14,13 +14,12 @@ router.post('/checkUser', async (req, res, next) => {
   try{
     const user = await User.findOne({
       where: {
-        email: req.body.email
+        userName: req.body.user.userName
       }
     }) 
-    
     if(!user){
       res.status(401).send('Wrong username and/or password')
-    } else if (user.password !== req.body.password) {
+    } else if (user.password !== req.body.user.password) {
       res.status(401).send('Wrong username and/or password')
     } else {
       req.login(user, err => (err ? next(err) : res.json(user)))
