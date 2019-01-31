@@ -16,11 +16,8 @@ class Menu extends Component  {
       case 'Home':
         path = '/'
         break;
-      case 'Sign Up':
+      case 'Sign Up/Log In':
         path= '/signup'
-        break;
-      case 'Log In':
-        path= 'signup'
         break;
       case 'Log Out':
         return this.props.deleteUser()
@@ -39,8 +36,7 @@ class Menu extends Component  {
     <div className="ui vertical menu" id="menu-container">
       <h1>Book Hunter</h1>     
         <div className="menu-links" onClick={this.handleClick}>Home</div>
-        <div className="menu-links" onClick={this.handleClick}>Sign Up</div>
-        <div className="menu-links" onClick={this.handleClick}>Log In</div>
+        <div className="menu-links" onClick={this.handleClick}>Sign Up/Log In</div>
         <div className="menu-links" onClick={this.handleClick}>Log Out</div>
     </div>
   )
