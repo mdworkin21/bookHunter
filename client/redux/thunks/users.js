@@ -1,12 +1,12 @@
 import regeneratorRuntime from "regenerator-runtime";
 import axios from 'axios'
-import {getUser} from '../actions/users'
+import { getUser } from '../actions/users'
 
 //USER THUNK
-export const getUserFromPassport = () => {
+export const getUserFromPassport = (id) => {
   return async (dispatch) => {
     try{
-      const response = await axios.get('/authenticate/getUser')
+      const response = await axios.get(`/authenticate/getUser/${id}`)
       const user = response.data
       const action = getUser(user)
       dispatch(action)
@@ -24,9 +24,8 @@ export const createNewUser = (user) => {
         email: user.email,
         password: user.password
       })
-
       if (newUser.status === 201){
-        getUserFromPassport(newUser.data.id)
+        dispatch(getUserFromPassport(newUser.data.id))
       }
     } catch(err){
         console.log(err)

@@ -3,7 +3,7 @@ const User = require('../db/models/User')
 
 //Checks to see if user exists in db, and whether pw is correct. 
 
-router.get('/getUser', (req, res, next) => {
+router.get('/getUser/:id', (req, res, next) => {
   if (req.user){
     res.status(200).send(req.user)
   }

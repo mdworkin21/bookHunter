@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import '../public/style/Menu.css'
-import SignUp from './SignUp';
 import {Redirect} from 'react-router-dom'
 
 class Menu extends Component  {
@@ -31,7 +30,6 @@ class Menu extends Component  {
   }
 
   render(){
-    console.log(this.props)
   return this.state.redirect ? <Redirect to={this.state.path}/> : (
     <div className="ui vertical menu" id="menu-container">
       <h1>Book Hunter</h1>     

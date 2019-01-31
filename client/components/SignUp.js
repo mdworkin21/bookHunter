@@ -27,7 +27,7 @@ class SignUp extends Component {
    handleSubmit = async (event) =>{
     event.preventDefault()
     try{
-     await this.props.createUser({
+      await this.props.createUser({
         userName: this.state.userName,
         email: this.state.email,
         password: this.state.password
@@ -40,9 +40,16 @@ class SignUp extends Component {
       }) 
 
       //IF LOGIN WORKS OR SIGNUP WORKS REDIRECT TO HOME PAGE WITH SIGNIN
+
     } catch(err){
         console.log(err)
     }  
+  }
+
+  componentDidUpdate(prevProps){
+    if (this.props.user !== prevProps.user){
+      this.handleRedirect()
+    }
   }
 
   handleRedirect = () => {
@@ -52,6 +59,7 @@ class SignUp extends Component {
   }
 
   render(){
+    console.log(this.props.user)
     return this.state.redirect ? <Redirect to='/' /> : (
       <React.Fragment>
         <Menu />
@@ -90,4 +98,11 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(SignUp)
+const mapStateToProps = (state) => {
+  console.log('MAP',state.user)
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
