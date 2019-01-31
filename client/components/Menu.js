@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import '../public/style/Menu.css'
 import {Redirect} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { removeUser } from '../redux/thunks/users'
 
 class Menu extends Component  {
   state = {
@@ -20,6 +22,9 @@ class Menu extends Component  {
       case 'Log In':
         path= 'signup'
         break;
+      case 'Log Out':
+        return this.props.deleteUser()
+      break;
       default:
         path = '/'
     }
@@ -36,10 +41,16 @@ class Menu extends Component  {
         <div className="menu-links" onClick={this.handleClick}>Home</div>
         <div className="menu-links" onClick={this.handleClick}>Sign Up</div>
         <div className="menu-links" onClick={this.handleClick}>Log In</div>
-      
+        <div className="menu-links" onClick={this.handleClick}>Log Out</div>
     </div>
   )
   }
 }
 
-export default Menu
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteUser: () => dispatch(removeUser())
+  }
+}
+export default connect(null, mapDispatchToProps)(Menu)

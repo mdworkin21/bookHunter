@@ -45,6 +45,7 @@ router.delete('/logout', async(req, res, next) => {
   try{
     req.logOut()
     req.session.destroy()
+    res.sendStatus(202)
   }catch(err){
     next(err)
   }

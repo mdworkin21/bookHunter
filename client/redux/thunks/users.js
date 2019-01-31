@@ -1,6 +1,6 @@
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import axios from 'axios'
-import { getUser } from '../actions/users'
+import { getUser, deleteUser} from '../actions/users'
 
 //USER THUNK
 export const getUserFromPassport = (id) => {
@@ -47,3 +47,15 @@ export const logInUser = (user) => {
     }
   }
 }
+
+export const removeUser = () => {
+  return async (dispatch) => {
+    try{
+      const logOut = await axios.delete('/authenticate/logout')
+      const action = (deleteUser())
+      dispatch(action)
+    }catch(err){
+      console.log(err)
+    } 
+  }
+} 

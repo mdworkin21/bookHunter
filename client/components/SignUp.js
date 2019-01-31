@@ -38,8 +38,6 @@ class SignUp extends Component {
         password: '',
         repassword: ''
       }) 
-
-
     } catch(err){
         console.log(err)
     }  
