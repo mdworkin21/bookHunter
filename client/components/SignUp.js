@@ -102,6 +102,12 @@ class SignUp extends Component {
 }
 
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createUser: (user) => dispatch(createNewUser(user)),
@@ -109,10 +115,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user
-  }
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

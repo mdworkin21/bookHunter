@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import '../public/style/Menu.css'
-import {Redirect} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { removeUser } from '../redux/thunks/users'
 
@@ -20,33 +20,49 @@ class Menu extends Component  {
         path= '/signup'
         break;
       case 'Log Out':
-        return this.props.deleteUser()
-      break;
+        this.props.deleteUser()
+        path = '/'
       default:
         path = '/'
     }
     this.setState({
-      redirect: true,
       path: path
     })
   }
 
+  componentDidUpdate(prevProps){
+    if(prevProps.location.pathname !== this.state.path){
+     this.setState({
+       redirect: true
+    })
+    }
+  }
+
   render(){
-  return this.state.redirect ? <Redirect to={this.state.path}/> : (
-    <div className="ui vertical menu" id="menu-container">
-      <h1>Book Hunter</h1>     
-        <div className="menu-links" onClick={this.handleClick}>Home</div>
-        <div className="menu-links" onClick={this.handleClick}>Sign Up/Log In</div>
-        <div className="menu-links" onClick={this.handleClick}>Log Out</div>
-    </div>
-  )
+    console.log('PROPS',this.props.location)
+    return this.state.redirect ? <Redirect to={{pathname: this.state.path, state: {from: this.props.location}}}/> : (
+      <div className="ui vertical menu" id="menu-container">
+        <h1>Book Hunter</h1>     
+          <div className="menu-links" onClick={this.handleClick}>Home</div>
+          <div className="menu-links" onClick={this.handleClick}>Sign Up/Log In</div>
+          <div className="menu-links" onClick={this.handleClick}>Log Out</div>
+      </div>
+    )
   }
 }
 
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteUser: () => dispatch(removeUser())
   }
 }
-export default connect(null, mapDispatchToProps)(Menu)
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Menu))
