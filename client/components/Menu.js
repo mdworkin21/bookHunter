@@ -5,11 +5,6 @@ import { connect } from 'react-redux'
 import { removeUser } from '../redux/thunks/users'
 
 class Menu extends Component  {
-  state = {
-    redirect: false,
-    path: ''
-  }
-
   handleClick = (event) => {
     this.props.deleteUser()
     return <Redirect to='/' />
