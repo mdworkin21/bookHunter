@@ -5,7 +5,6 @@ import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import App from './components/App'
 import SingleView from './components/SingleView'
-import Menu from './components/Menu'
 import SignUp from './components/SignUp'
 
 ReactDOM.render(

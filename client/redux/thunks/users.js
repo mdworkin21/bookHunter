@@ -8,6 +8,7 @@ export const getUserFromPassport = (id) => {
     try{
       const response = await axios.get(`/authenticate/getUser/${id}`)
       const user = response.data
+      console.log('USER', user)
       const action = getUser(user)
       dispatch(action)
     }catch(err){
@@ -25,6 +26,7 @@ export const createNewUser = (user) => {
         password: user.password
       })
       if (newUser.status === 201){
+        console.log('NEWEWEW', newUser.data)
         dispatch(getUserFromPassport(newUser.data.id))
       }
     } catch(err){
