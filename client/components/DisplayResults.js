@@ -29,36 +29,38 @@ class DisplayResults extends Component {
     }
   }
 
-  handleAddToList = async (book) => {
-    const bookToSave = {
-      title: book.title_suggest,
-      author: book.author_name[0],
-      publishYear: book.first_publish_year,
-      isbn: book.isbn[0],
-      edition: book.edition_key[0],
-      cover_i: book.cover_i
+// Strange bug, some books get added to db twice (but not all). When displaying them on profile we can do a filter work around. Not a huge fan, but should workt ill bug is fixed. Not sure what's causing bug, possibly findorcreate //
+
+ handleAddToList = async (book) => {
+  const bookToSave = {
+    title: book.title_suggest,
+    author: book.author_name[0],
+    publishYear: book.first_publish_year,
+    isbn: book.isbn[0],
+    edition: book.edition_key[0],
+    cover_i: book.cover_i
+  }
+  
+  if (event.srcElement.id === 'heart-icon'){
+    try{
+      let addedBook = await axios.post('/api/addbooks/addbook', bookToSave)
+      let bookId = addedBook.data[0].id
+      let userId = this.props.user.id
+      let addedFavorite = await axios.post('/api/addbooks/addToFavorites', {bookId, userId})
+    }catch(err){
+      console.log(err)
     }
-    
-    if (event.srcElement.id === 'heart-icon'){
-      try{
-        let addedBook = await axios.post('/api/addbooks/addbook', bookToSave)
-        let bookId = addedBook.data[0].id
-        let userId = this.props.user.id
-        let addedFavorite = await axios.post('/api/addbooks/addToFavorites', {bookId, userId})
-      }catch(err){
-        console.log(err)
-      }
-    } else if (event.srcElement.id === 'book-icon'){
-      try{
-        let addedBook = await axios.post('/api/addbooks/addbook', bookToSave)
-        let bookId = addedBook.data[0].id
-        let userId = this.props.user.id
-        let addedFavorite = await axios.post('/api/addbooks/willRead', {bookId, userId})
-      }catch(err){
-        console.log(err)
-      }
+  } else if (event.srcElement.id === 'book-icon'){
+    try{
+      let addedBook = await axios.post('/api/addbooks/addbook', bookToSave)
+      let bookId = addedBook.data[0].id
+      let userId = this.props.user.id
+      let addedFavorite = await axios.post('/api/addbooks/willRead', {bookId, userId})
+    }catch(err){
+      console.log(err)
     }
   }
+}
 
   render(){
   let results = this.props.results.results
@@ -108,7 +110,6 @@ const style = {
     padding: '0'
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {

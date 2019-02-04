@@ -22,10 +22,11 @@ router.post('/addbook', async (req, res, next) => {
 
 router.post('/addToFavorites', async (req, res, next) => {
   try{
-    let newBook = await Favorite.create({
+    let newBook = await Favorite.findOrCreate({where: {
       userId: req.body.userId,
       bookId: req.body.bookId
-    })
+    }
+  })
     res.status(201).send(newBook)
   } catch(err){
       next(err)
@@ -34,10 +35,11 @@ router.post('/addToFavorites', async (req, res, next) => {
 
 router.post('/willRead', async (req, res, next) => {
   try{
-    let newBook = await WillRead.create({
+    let newBook = await WillRead.findOrCreate({where: {
       userId: req.body.userId,
       bookId: req.body.bookId
-    })
+    }
+  })
     res.status(201).send(newBook)
   } catch(err){
       next(err)
