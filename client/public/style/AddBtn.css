@@ -1,0 +1,17 @@
+.add-btn-container{
+  display: flex;
+}
+
+.add-btn-content{
+  flex-direction: column
+}
+
+#heart-icon {
+  position: relative;
+  left: 0;
+}
+
+#book-icon{
+  position: relative;
+  right: 0;
+}

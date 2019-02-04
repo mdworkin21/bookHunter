@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import regeneratorRuntime from "regenerator-runtime";
+import axios from 'axios';
 import '../public/style/DisplayResults.css'
 import {Link} from 'react-router-dom'
 import PaginateBtn from './PaginateBtn';
 import Image from 'react-image-resizer'
+import AddBtns from './AddToListBtns';
 
-
+//REMEMBER TO ALTER DISPLAY OF BUTTONS IF USER NOT SIGNED IN
 class DisplayResults extends Component {
   state = {
     start: 0,
@@ -26,8 +29,38 @@ class DisplayResults extends Component {
     }
   }
 
+  handleAddToList = async (book) => {
+    const bookToSave = {
+      title: book.title_suggest,
+      author: book.author_name[0],
+      publishYear: book.first_publish_year,
+      isbn: book.isbn[0],
+      edition: book.edition_key[0],
+      cover_i: book.cover_i
+    }
+    
+    if (event.srcElement.id === 'heart-icon'){
+      try{
+        let addedBook = await axios.post('/api/addbooks/addbook', bookToSave)
+        let bookId = addedBook.data[0].id
+        let userId = this.props.user.id
+        let addedFavorite = await axios.post('/api/addbooks/addToFavorites', {bookId, userId})
+      }catch(err){
+        console.log(err)
+      }
+    } else if (event.srcElement.id === 'book-icon'){
+      try{
+        let addedBook = await axios.post('/api/addbooks/addbook', bookToSave)
+        let bookId = addedBook.data[0].id
+        let userId = this.props.user.id
+        let addedFavorite = await axios.post('/api/addbooks/willRead', {bookId, userId})
+      }catch(err){
+        console.log(err)
+      }
+    }
+  }
+
   render(){
-  
   let results = this.props.results.results
   let currentResults = results.slice(this.state.start, this.state.end)
   return (
@@ -55,6 +88,7 @@ class DisplayResults extends Component {
             </div>
             <div className="description">Published: {el.first_publish_year}</div>
           </div>
+          <AddBtns addToList={this.handleAddToList} book={el}/>
         </div>
         )
       })}
@@ -78,7 +112,8 @@ const style = {
 
 const mapStateToProps = (state) => {
   return {
-    results: state.results
+    results: state.results,
+    user: state.user.user
   }
 }
 

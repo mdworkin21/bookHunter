@@ -14,13 +14,16 @@ const Book = db.define('books', {
     type: Sequelize.STRING
   },
   publishYear: {
+    type: Sequelize.INTEGER
+  },
+  isbn: {
     type: Sequelize.STRING
   },
   edition: {
     type: Sequelize.STRING
   },
   cover_i: {
-    type: Sequelize.STRING
+    type: Sequelize.INTEGER
   }
 })
 
