@@ -27,6 +27,7 @@ class DisplayResults extends Component {
   }
 
   render(){
+  
   let results = this.props.results.results
   let currentResults = results.slice(this.state.start, this.state.end)
   return (

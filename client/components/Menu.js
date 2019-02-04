@@ -10,10 +10,7 @@ class Menu extends Component  {
     return <Redirect to='/' />
   }
 
-
-
   render(){
-    console.log('P{ROPS', this.props)
     return (
       <div className="ui vertical menu" id="menu-container">
         <h1>Book Hunter</h1>  
