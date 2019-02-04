@@ -26,7 +26,6 @@ export const createNewUser = (user) => {
         password: user.password
       })
       if (newUser.status === 201){
-        console.log('NEWEWEW', newUser.data)
         dispatch(getUserFromPassport(newUser.data.id))
       }
     } catch(err){

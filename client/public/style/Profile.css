@@ -1,0 +1,43 @@
+#user-info-container {
+  position: relative;
+  left: 15%;
+  top: 23%;
+  width: 70%
+}
+
+
+
+
+/* Medium Screens */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { 
+  #user-info-container {
+    position: relative;
+    left: 36%;
+    top: 25%;
+    width: 46%;
+  }
+  
+}
+
+
+/* Large Screens */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) { 
+  #user-info-container {
+    position: relative;
+    left: 33%;
+    top: 13%;
+    width: 40%
+  }
+  
+}
+
+/* Extra Large Screen */
+@media only screen and (min-width: 90.063em) { 
+  #user-info-container {
+    position: relative;
+    left: 33%;
+    top: 13%;
+    width: 40%
+  }
+  
+}  

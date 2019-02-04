@@ -17,7 +17,7 @@ import PaginateBtn from './PaginateBtn';
 import Menu from './Menu';
 
 //Main component. Passes local state to forms. Local state here isn't necessary for rest of app, which is why it's not in redux store.
-class App  extends Component {
+class App extends Component {
   state = {
     term: "",
     author: "",

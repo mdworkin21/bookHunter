@@ -18,6 +18,8 @@ class Menu extends Component  {
           <NavLink to='/' id="menu-links">Home</NavLink>
           <br/>
           <NavLink to='/signup' id="menu-links">Sign Up/ Log In</NavLink>
+          <br/>
+          <NavLink to='/profile' id="menu-links">Profile</NavLink>
           <div id="menu-links" onClick={this.handleClick}>Log Out</div>
       </div>
     )
