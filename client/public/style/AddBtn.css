@@ -1,17 +1,33 @@
 .add-btn-container{
+  position: absolute;
+  bottom: 0px;
   display: flex;
 }
 
 .add-btn-content{
-  flex-direction: column
+  flex-direction: column;
 }
 
 #heart-icon {
   position: relative;
   left: 0;
+  
 }
 
 #book-icon{
   position: relative;
   right: 0;
+  z-index:1
+}
+
+#heart-icon:hover {
+  cursor: pointer;
+}
+
+#book-icon:hover{
+  cursor: pointer;
+}
+
+.add-btn:hover{
+  cursor: pointer;
 }

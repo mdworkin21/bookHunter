@@ -1,9 +1,19 @@
 import React, {Component} from 'react'
+import regeneratorRuntime, { async } from "regenerator-runtime";
+
 import Menu from './Menu'
 import '../public/style/Profile.css'
 import { connect } from 'react-redux';
+import BookLists from './BookLists';
+import { getUserFavorites, getUserWillReads } from '../redux/thunks/userLists';
 
 class Profile extends Component {
+
+  async componentDidMount(){
+    await this.props.getFavorites(this.props.user.id)
+    await this.props.getWillRead(this.props.user.id)
+  }
+
   render(){
     return (
     <React.Fragment>
@@ -17,6 +27,8 @@ class Profile extends Component {
           <p>Email: {this.props.user.email} </p>
         </div>
       </div>
+      <BookLists list={this.props.favorites} listType={'Favorite Reads'} />
+      <BookLists list={this.props.willRead} listType={'On My To Read List'} />
     </React.Fragment>
     )
   }
@@ -24,8 +36,17 @@ class Profile extends Component {
 
 const mapStateToProps = (state) =>  {
   return {
-    user: state.user.user
+    user: state.user.user,
+    favorites: state.user.favorites,
+    willRead: state.user.willRead
   }
 }
 
-export default connect(mapStateToProps)(Profile)
+const mapStateToDispatch = (dispatch) => {
+  return {
+    getFavorites: (id) => dispatch(getUserFavorites(id)),
+    getWillRead: (id) => dispatch(getUserWillReads(id))
+  }
+}
+
+export default connect(mapStateToProps, mapStateToDispatch)(Profile)
