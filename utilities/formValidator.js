@@ -6,7 +6,6 @@ const formValidator = (obj, key) => {
   } else if (key === "password"){
       return obj[key].length >= 8
   } else if (key === "repassword"){
-
       return obj[key] === obj["password"]
   } 
 }
@@ -34,7 +33,7 @@ const individualizedErrMsg = (errorsArray) => {
     userName: 'Username is required.',
     email: 'A valid email is required.', 
     password: 'Password must be at least eight characters.',
-    rePassword: 'Re-entered password does not match password.',
+    repassword: 'Re-entered password does not match password.',
   }
   for (let i = 0; i < errorsArray.length; i++){
     messages.push(messageObj[errorsArray[i]])

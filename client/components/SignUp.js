@@ -9,6 +9,8 @@ import {
   checkEachField,
   individualizedErrMsg
 } from "../../utilities/formValidator";
+import { withAlert } from 'react-alert'
+
 class SignUp extends Component {
   //Needs to be fixed
   state = {
@@ -19,7 +21,7 @@ class SignUp extends Component {
     logInUserName: '',
     logInPassword: '',
     redirect: false,
-    logInErr: false
+    logInErr: false,
   }
 
   handleChange = (event) => {
@@ -47,7 +49,11 @@ class SignUp extends Component {
         console.log(err)
     }  
   } else {
-    console.log(checkEachField(formValidator, this.state))
+    const messages = individualizedErrMsg(
+      checkEachField(formValidator, this.state)
+    );
+    const finalMessage = this.displayErrMessages(messages)
+    this.props.alert.show(finalMessage)
   }
 }
 
@@ -65,22 +71,29 @@ class SignUp extends Component {
 
    handleLogin = async (event) => {
     event.preventDefault()
-
     try{
       await this.props.logInUser({
         userName: this.state.logInUserName,
         password: this.state.logInPassword
       })
-  
     }catch(err){
       console.log(err.status)
       console.log(err)
     }
   }
 
+  displayErrMessages(messages){
+     let finalMessage = ''
+      for (let i = 0; i < messages.length; i++){
+        finalMessage += `${i + 1}. ${messages[i]} ${'\n'}`
+      }
+      return finalMessage
+  }
+
+
   render(){
-    console.log(this.props.user)
     let logInErr = this.props.user.logInErr ? 'Username or Password Invalid. Please try again.' : ''
+
     return this.state.redirect ? <Redirect to='/' /> : (
       <React.Fragment>
       <div id="login-box">
@@ -91,6 +104,7 @@ class SignUp extends Component {
           <input type="text" name="email" placeholder="Email" onChange={this.handleChange} value={this.state.email} />
           <input type="password" name="password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
           <input type="password" name="repassword" placeholder="Retype Password" onChange={this.handleChange} value={this.state.repassword} />
+          {/* {this.state.signUpErr ? this.displayErrMessages(messages) : ''} */}
           <input type="submit" name="signup-btn" value="Sign Up"/>
            <input type="submit" id="guest" value="Continue as Guest" onClick={this.handleRedirect}/>
         </div>
@@ -126,5 +140,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default withAlert(connect(mapStateToProps, mapDispatchToProps)(SignUp))
