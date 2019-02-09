@@ -4,7 +4,11 @@ import {connect} from 'react-redux'
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import '../public/style/SignUp.css'
 import {Redirect} from 'react-router-dom'
-
+import {
+  formValidator,
+  checkEachField,
+  individualizedErrMsg
+} from "../../utilities/formValidator";
 class SignUp extends Component {
   //Needs to be fixed
   state = {
@@ -26,6 +30,7 @@ class SignUp extends Component {
 
    handleSubmit = async (event) =>{
     event.preventDefault()
+    if (checkEachField(formValidator, this.state).length < 1) {
     try{
       await this.props.createUser({
         userName: this.state.userName,
@@ -41,7 +46,10 @@ class SignUp extends Component {
     } catch(err){
         console.log(err)
     }  
+  } else {
+    console.log(checkEachField(formValidator, this.state))
   }
+}
 
   componentDidUpdate(prevProps){
     if (this.props.user.user !== prevProps.user.user){
