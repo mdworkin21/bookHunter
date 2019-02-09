@@ -11,7 +11,6 @@ import SignUp from './components/SignUp'
 import Profile from './components/Profile'
 import Menu from './components/Menu';
 
-
 const options = {
   position: 'bottom center',
   offset: '120px',
@@ -21,17 +20,17 @@ const options = {
 
 ReactDOM.render(
   <AlertProvider template={AlertTemplate} {...options}>
-  <Provider store={store}>
-    <Router>
-      <div>
-        <Menu width={screen.width}/>
-        <Route exact path='/' component={App}/>
-        <Route exact path='/details/:id' component={SingleView} />
-        <Route exact path='/signup' component={SignUp} />
-        <Route exact path='/profile' component={Profile} />
-      </div>
-    </Router>
-  </Provider>
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Menu/>
+          <Route exact path='/' component={App}/>
+          <Route exact path='/details/:id' component={SingleView} />
+          <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/profile' component={Profile} />
+        </div>
+      </Router>
+    </Provider>
   </AlertProvider>,
   document.getElementById("root")
   )

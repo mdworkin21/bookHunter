@@ -65,6 +65,9 @@ class DisplayResults extends Component {
   render(){
   let results = this.props.results.results
   let currentResults = results.slice(this.state.start, this.state.end)
+  let prevVis = this.state.start - 1 < 0 ? 'hidden' : 'visible'
+  let nextVis = this.state.end + 1 > results.length ? 'hidden' : 'visible'
+  
   return (
     <React.Fragment>
     <div className="ui grid stackable"> 
@@ -94,8 +97,8 @@ class DisplayResults extends Component {
         </div>
         )
       })}
-      <i className="huge chevron left icon" id="left-arrow" onClick={() => this.handleClick('prev')}></i>
-      <i className="huge chevron right icon" id="right-arrow" onClick={() => this.handleClick('next')}></i>
+      <i className="huge chevron left icon" id="left-arrow" onClick={() => this.handleClick('prev')} style={{visibility: prevVis}}></i>
+      <i className="huge chevron right icon" id="right-arrow" onClick={() => this.handleClick('next')} style={{visibility: nextVis}}></i>
       </div>
     </React.Fragment>
    )
