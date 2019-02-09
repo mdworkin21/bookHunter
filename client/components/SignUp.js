@@ -14,7 +14,8 @@ class SignUp extends Component {
     repassword: '',
     logInUserName: '',
     logInPassword: '',
-    redirect: false
+    redirect: false,
+    logInErr: false
   }
 
   handleChange = (event) => {
@@ -43,7 +44,7 @@ class SignUp extends Component {
   }
 
   componentDidUpdate(prevProps){
-    if (this.props.user !== prevProps.user){
+    if (this.props.user.user !== prevProps.user.user){
       this.handleRedirect()
     } 
   }
@@ -62,13 +63,16 @@ class SignUp extends Component {
         userName: this.state.logInUserName,
         password: this.state.logInPassword
       })
+  
     }catch(err){
-     console.log(err.status)
+      console.log(err.status)
       console.log(err)
     }
   }
 
   render(){
+    console.log(this.props.user)
+    let logInErr = this.props.user.logInErr ? 'Username or Password Invalid. Please try again.' : ''
     return this.state.redirect ? <Redirect to='/' /> : (
       <React.Fragment>
       <div id="login-box">
@@ -89,6 +93,7 @@ class SignUp extends Component {
           <h1 id="loginTitle">Log In</h1>
           <input type="text" className="loginInput" name="logInUserName" placeholder="Username" onChange={this.handleChange} value={this.state.logInUserName} />
           <input type="password" className="loginInput" name="logInPassword" placeholder="Password" onChange={this.handleChange} value={this.state.logInPassword} />
+          <div className="err-message">{logInErr}</div>
           <input type="submit" className="loginBtn" name="login-in" value="Log In" />
         </div>
       </form>
@@ -110,7 +115,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     createUser: (user) => dispatch(createNewUser(user)),
     logInUser: (user) => dispatch(logInUser(user))
-    }
+  }
 }
 
 

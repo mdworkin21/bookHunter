@@ -1,3 +1,13 @@
+.err-message{
+  box-sizing: border-box;
+  color:black; 
+  position: relative;
+  top: 3.5em;
+  left: 2em;
+  font-weight: 800;
+  align-content: center;
+  word-wrap: break-word;
+}
 #login-box {
   position: relative;
   top: 13vh;
@@ -90,8 +100,7 @@ input[type="submit"]:hover, input[type="submit"]:focus{
 }
 
 
-.or
-{
+.or{
     position: absolute;
     top: 180px;
     left: 280px;
