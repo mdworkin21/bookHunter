@@ -1,7 +1,7 @@
 .list-container { 
   background-color: #FFFFF0;
   position: relative;
-  left: 29%;
+  left: 28%;
   top: 28%;
   width: 51%
 }
@@ -9,3 +9,58 @@
 .single-item {
   align-content: center;
 }
+
+
+
+
+/* Medium Screens */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { 
+  .list-container { 
+    background-color: #FFFFF0;
+    position: relative;
+    left: 34%;
+    top: 28%;
+    width: 51%
+  }
+  
+  .single-item {
+    align-content: center;
+  }
+  
+  
+}
+
+
+/* Large Screens */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) { 
+  .list-container { 
+    background-color: #FFFFF0;
+    position: relative;
+    left: 29%;
+    top: 28%;
+    width: 51%
+  }
+  
+  .single-item {
+    align-content: center;
+  }
+  
+  
+}
+
+/* Extra Large Screen */
+@media only screen and (min-width: 90.063em) {
+  .list-container { 
+    background-color: #FFFFF0;
+    position: relative;
+    left: 29%;
+    top: 28%;
+    width: 51%
+  }
+  
+  .single-item {
+    align-content: center;
+  }
+  
+  
+}  

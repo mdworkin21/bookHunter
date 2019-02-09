@@ -1,6 +1,20 @@
+.entire-profile-container{
+  position: relative;
+  top: 14em;
+  align-content: center;
+}
+
+#profile-header{
+  position: relative;
+  left: 19%;
+  width: 70%;
+  top: 20%;
+  padding-left: 4.5em;
+}
+
 #user-info-container {
   position: relative;
-  left: 15%;
+  left: 19%;
   top: 23%;
   width: 70%
 }
@@ -8,6 +22,14 @@
 
 /* Medium Screens */
 @media only screen and (min-width: 40.063em) and (max-width: 64em) { 
+  #profile-header{
+    position: relative;
+    left: 36%;
+    top: 22%;
+    width: 46%;
+    padding-left: 6.5em;
+  }
+
   #user-info-container {
     position: relative;
     left: 36%;
@@ -20,9 +42,17 @@
 
 /* Large Screens */
 @media only screen and (min-width: 64.063em) and (max-width: 90em) { 
+  #profile-header{
+    position: relative;
+    left: 35%;
+    top: 10%;
+    width: 40%;
+    padding-left: 12em;
+  }
+
   #user-info-container {
     position: relative;
-    left: 33%;
+    left: 35%;
     top: 13%;
     width: 40%
   }
@@ -30,7 +60,15 @@
 }
 
 /* Extra Large Screen */
-@media only screen and (min-width: 90.063em) { 
+@media only screen and (min-width: 90.063em) {
+  #profile-header{
+    position: relative;
+    left: 33%;
+    top: 10%;
+    width: 40%;
+    padding-left: 16em;
+  } 
+
   #user-info-container {
     position: relative;
     left: 33%;

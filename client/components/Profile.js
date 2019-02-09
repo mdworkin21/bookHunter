@@ -6,7 +6,6 @@ import BookLists from './BookLists';
 import { getUserFavorites, getUserWillReads } from '../redux/thunks/userLists';
 
 class Profile extends Component {
-
   async componentDidMount(){
     await this.props.getFavorites(this.props.user.id)
     await this.props.getWillRead(this.props.user.id)
@@ -14,8 +13,9 @@ class Profile extends Component {
 
   render(){
     return (
-    <React.Fragment>
-      <div className="ui huge header">Profile</div>
+      <React.Fragment> 
+      <div className="entire-profile-container"> 
+      <div className="ui huge header segment" id="profile-header">Profile</div>
       <div className="ui segments" id="user-info-container">
         <div className="ui segment">
           <p>User Name: {this.props.user.userName} </p>
@@ -26,7 +26,8 @@ class Profile extends Component {
       </div>
       <BookLists list={this.props.favorites} listType={'Favorite Reads'} />
       <BookLists list={this.props.willRead} listType={'On My To Read List'} />
-    </React.Fragment>
+      </div>
+      </React.Fragment>
     )
   }
 }
