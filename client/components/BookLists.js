@@ -2,6 +2,7 @@ import React from 'react'
 import '../public/style/BookLists.css'
 
 const BookLists = (props) => {
+  console.log(props.list)
   return (
     <div className="ui items list-container">
       <div className="ui segment">

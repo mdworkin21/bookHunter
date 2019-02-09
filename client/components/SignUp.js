@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import '../public/style/SignUp.css'
 import {Redirect} from 'react-router-dom'
-import Menu from './Menu'
 
 class SignUp extends Component {
   //Needs to be fixed
@@ -72,7 +71,6 @@ class SignUp extends Component {
   render(){
     return this.state.redirect ? <Redirect to='/' /> : (
       <React.Fragment>
-        <Menu />
       <div id="login-box">
       <form  onSubmit={this.handleSubmit}>
         <div className="left-box">

@@ -4,6 +4,7 @@ const queryStringConstructor = require('../../utilities/queryStrConstructor')
 const sortResults = require('../../utilities/sort')     
 
 router.get('/:search?', async (req, res, next) => {
+  console.log('IP', req)
   try{
     //Constructs query string for advanced searches and pings Open Library
    let advanced = queryStringConstructor(req)

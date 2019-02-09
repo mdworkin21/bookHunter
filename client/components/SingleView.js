@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Title from './Menu'
 import '../public/style/SingleView.css'
-import {Redirect} from 'react-router-dom'
-import App from './App'
 import PaginateBtn from './PaginateBtn';
-import Menu from './Menu'
 
 const SingleView = (props) => {
   //Looks at store to grab specific book, and displays results depending on what info exists 
@@ -16,9 +12,7 @@ const SingleView = (props) => {
   let nextBook = props.results.results[`${parseInt(props.match.params.id) + 1}`]
   let prevBook = props.results.results[`${parseInt(props.match.params.id) -  1}`]
   return ( 
-    <React.Fragment>
-      <Menu />
-    
+    <React.Fragment>    
        <div className="main-div">
           <div className="ui items single-view-container">
             <div className="item">

@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import regeneratorRuntime, { async } from "regenerator-runtime";
-
-import Menu from './Menu'
 import '../public/style/Profile.css'
 import { connect } from 'react-redux';
 import BookLists from './BookLists';
@@ -17,7 +15,6 @@ class Profile extends Component {
   render(){
     return (
     <React.Fragment>
-      <Menu/>
       <div className="ui huge header">Profile</div>
       <div className="ui segments" id="user-info-container">
         <div className="ui segment">

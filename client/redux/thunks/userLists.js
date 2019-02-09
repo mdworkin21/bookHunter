@@ -4,7 +4,7 @@ import { getFavorites, getWillRead} from '../actions/users'
 
 
 //GETS USER LISTS
-
+//I think the issue might be due to the fact that the id i'm passing in here is NOT the correct one that links to db. To fix, have db send id of book?
 export const getUserFavorites = (id) => {
   return async (dispatch) => {
     try{ 

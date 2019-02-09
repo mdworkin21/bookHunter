@@ -14,7 +14,6 @@ import {toggleAdvancedSearch, sortBooks, isLoading, noResults, clearResults} fro
 import '../public/style/App.css'
 import Err from './Err';
 import PaginateBtn from './PaginateBtn';
-import Menu from './Menu';
 
 //Main component. Passes local state to forms. Local state here isn't necessary for rest of app, which is why it's not in redux store.
 class App extends Component {
@@ -111,7 +110,6 @@ class App extends Component {
     let buttonDisable = !this.state.term && (!this.state.title && !this.state.author)
     return this.props.searchState.error !== '' ? <Err error={this.props.searchState.error}/> : (
       <div id="search-container">
-      <Menu />
         <div className="ui container" >
           {advancedSearch}
           <Button 
