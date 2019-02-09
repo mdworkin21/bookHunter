@@ -32,6 +32,7 @@ class Menu extends Component  {
     }
   }
 
+ 
   render(){
     let menuDisplay = this.menuList()
     return (

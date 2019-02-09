@@ -13,7 +13,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <Menu />
+        <Menu width={screen.width}/>
         <Route exact path='/' component={App}/>
         <Route exact path='/details/:id' component={SingleView} />
         <Route exact path='/signup' component={SignUp} />
