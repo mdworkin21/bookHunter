@@ -6,7 +6,6 @@ const PaginateBtn = props => {
   const {next, prev, id} = props
   const prevVis = prev === undefined ? 'hidden' : 'visible'
   const nextVis = next === undefined ? 'hidden' : 'visible'
-  console.log(props, prevVis, nextVis)
   return (
     <div className="paginate-btn-container">
       <Link 

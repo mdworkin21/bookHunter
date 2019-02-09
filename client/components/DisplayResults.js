@@ -86,7 +86,7 @@ class DisplayResults extends Component {
                 style={style.image}/>
           </div>
           <div className="content" id="child-content">
-            <Link to={`/details/${index}`} className="header">{el.title_suggest}</Link>
+            <Link to={`/details/${index}`} className="header">   {el.title_suggest}</Link>
             <p>{el.subtitle}</p>
             <div className="meta">
               <span className="date">By: {el.author_name}</span>

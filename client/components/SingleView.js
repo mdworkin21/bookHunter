@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import '../public/style/SingleView.css'
 import PaginateBtn from './PaginateBtn';
+import AddBtns from './AddToListBtns';
 
 const SingleView = (props) => {
   //Looks at store to grab specific book, and displays results depending on what info exists 
@@ -11,6 +12,7 @@ const SingleView = (props) => {
   const opening = book.hasOwnProperty('first_sentence') ? book.first_sentence : 'Sorry, Unvailable' 
   let nextBook = props.results.results[`${parseInt(props.match.params.id) + 1}`]
   let prevBook = props.results.results[`${parseInt(props.match.params.id) -  1}`]
+
   return ( 
     <React.Fragment>    
        <div className="main-div">
@@ -34,6 +36,7 @@ const SingleView = (props) => {
                 </div>
               </div>
             </div>
+             {/* <AddBtns addToList={this.handleAddToList} book={el}/> */}
           </div>
           <PaginateBtn id='test' next={nextBook} prev={prevBook} id={parseInt(props.match.params.id)}/> 
     </div>
@@ -47,5 +50,6 @@ const mapStateToProps = (state) => {
     results: state.results
   }
 }
+
 
 export default connect(mapStateToProps)(SingleView)

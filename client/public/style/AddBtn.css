@@ -1,33 +1,22 @@
+
 .add-btn-container{
   position: absolute;
   bottom: 0px;
   display: flex;
+  border: none;
+  width: 100%;
+  align-content: center;
 }
 
 .add-btn-content{
   flex-direction: column;
 }
 
-#heart-icon {
+.add-btn {
   position: relative;
-  left: 0;
-  
-}
-
-#book-icon{
-  position: relative;
-  right: 0;
-  z-index:1
-}
-
-#heart-icon:hover {
+  left: 19%;
+  border: none;
   cursor: pointer;
+  outline: none;
 }
 
-#book-icon:hover{
-  cursor: pointer;
-}
-
-.add-btn:hover{
-  cursor: pointer;
-}
