@@ -1,10 +1,7 @@
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import axios from 'axios'
-import { getFavorites, getWillRead, addToListFavorites, addToListWillRead} from '../actions/users'
+import { getFavorites, getWillRead, addToListFavorites, addToListWillRead, deleteFromFav, deleteFromWillRead} from '../actions/users'
 
-
-//GETS USER LISTS
-//I think the issue might be due to the fact that the id i'm passing in here is NOT the correct one that links to db. To fix, have db send id of book?
 export const getUserFavorites = (id) => {
   return async (dispatch) => {
     try{ 
@@ -39,7 +36,6 @@ export const addToUserFavs = (book, user) => {
       const userId = user.id
       const addedFavorite = await axios.post('/api/addbooks/addToFavorites', {bookId, userId})
       const addedBook = Array.isArray(response.data) ? response.data[0] : response.data
-      console.log('THUNK', addedBook)
       const action = addToListFavorites(addedBook)
       dispatch(action)
     }
@@ -62,6 +58,38 @@ export const addToUserWillRead = (book, user) => {
     }
    catch(err){
     console.log(err)
+    }
+  }
+}
+
+export const deleteFromUserFav = (user, book) => {
+  return async (dispatch) => {
+    try{
+      const response = await axios.delete(`/api/addbooks/favDelete/${user.id}/${book.id}`)
+      if (response.status === 200){
+        const action = deleteFromFav(book)
+        dispatch(action)
+      } else {
+        console.log('ERRRRR')
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
+}
+
+export const deleteFromUserWillRead = (user, book) => {
+  return async (dispatch) => {
+    try{
+      const response = await axios.delete(`/api/addbooks/willReadDelete/${user.id}/${book.id}`)
+      if (response.status === 200){
+        const action = deleteFromWillRead(book)
+        dispatch(action)
+      } else {
+        console.log('ERRRRR')
+      }
+    }catch(err){
+      console.log(err)
     }
   }
 }

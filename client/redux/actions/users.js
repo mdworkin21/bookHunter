@@ -7,6 +7,8 @@ export const FAVORITE_BOOKS_LIST = 'FAVORITE_BOOKS_LIST'
 export const WILL_READ_LIST = 'WILL_READ_LIST'
 export const ADD_TO_FAV = 'ADD_TO_FAV'
 export const ADD_TO_WILL_READ = 'ADD_TO_WILL_READ'
+export const DELETE_FROM_FAV = 'DELETE_FROM_FAV'
+export const DELETE_FROM_WILL_READ = 'DELETE_FROM_WILL_READ'
 
 //USER ACTION CREATOR
 export const getUser = (user) => {
@@ -52,6 +54,20 @@ export const addToListFavorites = (book) => {
 export const addToListWillRead = (book) => {
   return {
     type: ADD_TO_WILL_READ,
+    book
+  }
+}
+
+export const deleteFromFav = (book) => {
+  return {
+    type: DELETE_FROM_FAV,
+    book
+  }
+}
+
+export const deleteFromWillRead = (book) => {
+  return {
+    type: DELETE_FROM_WILL_READ,
     book
   }
 }

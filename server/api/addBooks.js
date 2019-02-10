@@ -2,11 +2,8 @@ const router = require('express').Router()
 const Book = require('../db/models/Book')
 const {Favorite, WillRead} = require('../db/models/index')
 
-
-//Double posting bug might be because req.body returns a STRING not a number (so bel)...or not
 router.post('/addbook', async (req, res, next) => {
   try{
-    console.log('BACKEND', req.body)
     let newBook = await Book.findOrCreate({
       where: {
         title: req.body.title,
@@ -49,5 +46,36 @@ router.post('/willRead', async (req, res, next) => {
       next(err)
   }
 })
+
+
+router.delete('/favDelete/:userId/:bookId', async (req, res, next) => {
+  try{
+    console.log('BACKEDD', req.params)
+    let deletedBook = await Favorite.destroy({
+      where: {
+        userId: req.params.userId,
+        bookId: req.params.bookId
+      }
+    })
+    res.sendStatus(200)
+  }catch(err){
+    next(err)
+  }
+})
+
+router.delete('/willReadDelete/:userId/:bookId', async (req, res, next) => {
+  try{
+    let deletedBook = await WillRead.destroy({
+      where: {
+        userId: parseInt(req.params.userId),
+        bookId: parseInt(req.params.bookId)
+      }
+    })
+    res.sendStatus(200)
+  }catch(err){
+    next(err)
+  }
+})
+
 
 module.exports = router

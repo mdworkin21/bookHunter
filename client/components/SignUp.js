@@ -12,7 +12,6 @@ import {
 import { withAlert } from 'react-alert'
 
 class SignUp extends Component {
-  //Needs to be fixed
   state = {
     userName: '',
     email: '',
