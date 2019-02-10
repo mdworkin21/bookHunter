@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import '../public/style/SingleView.css'
 import PaginateBtn from './PaginateBtn';
 import AddBtns from './AddToListBtns';
+import '../public/style/SingleView.css'
 
 const SingleView = (props) => {
   //Looks at store to grab specific book, and displays results depending on what info exists 

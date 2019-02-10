@@ -11,6 +11,12 @@
 }
 
 
+.trash {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: #FFFFF0;
+}
 
 
 /* Medium Screens */
@@ -27,6 +33,11 @@
     align-content: center;
   }
   
+  .trash {
+    position: absolute;
+    right: 0px;
+   
+  }
   
 }
 
@@ -45,7 +56,10 @@
     align-content: center;
   }
   
-  
+  .trash {
+    position: absolute;
+    right: 0px;   
+  }
 }
 
 /* Extra Large Screen */
@@ -62,5 +76,9 @@
     align-content: center;
   }
   
-  
+  .trash {
+    position: absolute;
+    right: 0px;
+    
+  }
 }  
