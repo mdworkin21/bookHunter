@@ -1,4 +1,4 @@
-import {GET_USER, NEW_USER, DELETE_USER, FAVORITE_BOOKS_LIST, WILL_READ_LIST, GET_USER_FAIL} from '../actions/users'
+import {GET_USER, NEW_USER, DELETE_USER, FAVORITE_BOOKS_LIST, WILL_READ_LIST, GET_USER_FAIL, ADD_TO_FAV, ADD_TO_WILL_READ} from '../actions/users'
 
 const initialState = {
   user: {},
@@ -19,6 +19,10 @@ export default function userReducer(state = initialState, action){
       return {...state, favorites: action.favList}
     case WILL_READ_LIST:
       return {...state, willRead: action.willRead}
+    case ADD_TO_FAV: 
+      return {...state, favorites: [...state.favorites, action.book]}
+    case ADD_TO_WILL_READ:
+      return {...state, willRead: [...state.willRead, action.book]}
     default:
       return state
   }

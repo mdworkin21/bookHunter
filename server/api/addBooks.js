@@ -6,6 +6,7 @@ const {Favorite, WillRead} = require('../db/models/index')
 //Double posting bug might be because req.body returns a STRING not a number (so bel)...or not
 router.post('/addbook', async (req, res, next) => {
   try{
+    console.log('BACKEND', req.body)
     let newBook = await Book.findOrCreate({
       where: {
         title: req.body.title,

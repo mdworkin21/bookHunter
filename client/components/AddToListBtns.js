@@ -1,44 +1,54 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import '../public/style/AddBtn.css'//Try Add icons as content of buttons to get effects like you want
-//Styling needs work
-
+import axios from 'axios'
+import regeneratorRuntime from "regenerator-runtime";
+import '../public/style/AddBtn.css'
+import { addToUserFavs, addToUserWillRead } from '../redux/thunks/userLists'
 class AddBtns extends Component {
-  state = {
-    favored: false,
-    willRead: false
-  }
-
-  handleClick = () => {
-    if(event.srcElement.id === 'heart-icon'){
-      this.setState({
-        favored: !this.state.favored
-      })
-   } else if (event.srcElement.id === 'book-icon'){
-    this.setState({
-      willRead: !this.state.willRead
-    })
+  //Register handleClick event, toggle between add or remove depending on whether book/heart is highlighted or not
+  handleAddToList = async (id, book) => {
+    let isbn = book.isbn ? book.isbn[0] : '' 
+    const bookToSave = {
+      title: book.title_suggest,
+      author: book.author_name[0],
+      publishYear: book.first_publish_year,
+      isbn: isbn,
+      edition: book.edition_key[0],
+      cover_i: book.cover_i
+    }
+    if (id === 'heart-icon'){
+      try{
+        await this.props.addToFav(bookToSave, this.props.user)
+      }catch(err){
+        console.log(err)
+      }
+    } else if (id === 'book-icon'){
+        try{
+          await this.props.addToWillRead(bookToSave, this.props.user)
+        }catch(err){
+          console.log(err)
+        }
+      }
    }
+
+  // handleRemoveFromList = (id, book) => {
+
+  // }
+
+    
+  handleClick = (event) => {
+    this.handleAddToList(event.target.id, this.props.book)
   }
 
   render(){
   let btnVisibility = this.props.user.id ? 'visible' : 'hidden'
-  let red = this.state.favored ? 'red' : '' 
-  let green = this.state.willRead ? 'green' : ''
   return (
     <div className="add-btn-container" style={{visibility: btnVisibility}}>
-      <button className="add-btn" onClick={() => {
-        this.props.addToList(this.props.book)
-        this.handleClick()
-        }}>
-        <i className={`${red} big heart outline icon add-btn-content`} id="heart-icon"></i>
+      <button className="add-btn" onClick={this.handleClick}>
+        <i className={`${this.props.favColor} big heart outline icon add-btn-content`} id="heart-icon"></i>
       </button>
-      <button className="add-btn" id="book"onClick={() => {
-          this.props.addToList(this.props.book)
-          this.handleClick()
-          }
-        }> 
-        <i className={`${green} big book icon add-btn-content`}id="book-icon"></i>
+      <button className="add-btn" id="book" onClick={this.handleClick}> 
+        <i className={`${this.props.willReadColor} big book icon add-btn-content`}id="book-icon"></i>
       </button>
     </div>
   )
@@ -47,7 +57,16 @@ class AddBtns extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.user
+    user: state.user.user,
+    favorites: state.user.favorites,
+    willRead: state.user.willRead
   }
 }
-export default connect(mapStateToProps)(AddBtns)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToFav: (book, user) => dispatch(addToUserFavs(book, user)),
+    addToWillRead: (book, user) => dispatch(addToUserWillRead(book, user))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddBtns)

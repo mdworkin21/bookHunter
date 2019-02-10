@@ -8,7 +8,6 @@ import PaginateBtn from './PaginateBtn';
 import Image from 'react-image-resizer'
 import AddBtns from './AddToListBtns';
 
-//REMEMBER TO ALTER DISPLAY OF BUTTONS IF USER NOT SIGNED IN
 class DisplayResults extends Component {
   state = {
     start: 0,
@@ -28,40 +27,14 @@ class DisplayResults extends Component {
       })
     }
   }
-
-// Strange bug, some books get added to db twice (but not all). When displaying them on profile we can do a filter work around. Not a huge fan, but should workt ill bug is fixed. Not sure what's causing bug, possibly findorcreate //
-
- handleAddToList = async (book) => {
-  const bookToSave = {
-    title: book.title_suggest,
-    author: book.author_name[0],
-    publishYear: book.first_publish_year,
-    isbn: book.isbn[0],
-    edition: book.edition_key[0],
-    cover_i: book.cover_i
+ 
+  findMatch(el, arr){
+   return arr.find(element => {
+      let isbn = el.isbn ? el.isbn[0] : ''
+      return isbn === element.isbn
+    })
   }
   
-  if (event.srcElement.id === 'heart-icon'){
-    try{
-      let addedBook = await axios.post('/api/addbooks/addbook', bookToSave)
-      let bookId = addedBook.data[0].id
-      let userId = this.props.user.id
-      let addedFavorite = await axios.post('/api/addbooks/addToFavorites', {bookId, userId})
-    }catch(err){
-      console.log(err)
-    }
-  } else if (event.srcElement.id === 'book-icon'){
-    try{
-      let addedBook = await axios.post('/api/addbooks/addbook', bookToSave)
-      let bookId = addedBook.data[0].id
-      let userId = this.props.user.id
-      let addedFavorite = await axios.post('/api/addbooks/willRead', {bookId, userId})
-    }catch(err){
-      console.log(err)
-    }
-  }
-}
-
   render(){
   let results = this.props.results.results
   let currentResults = results.slice(this.state.start, this.state.end)
@@ -72,6 +45,8 @@ class DisplayResults extends Component {
     <React.Fragment>
     <div className="ui grid stackable"> 
     {currentResults.map((el, index) =>{
+      let red = this.findMatch(el, this.props.favorites) ? 'red' : ''
+      let green = this.findMatch(el, this.props.willRead) ? 'green' : ''
       let isbnNum = el.isbn ? el.isbn[0] : ""
       let displayImage = isbnNum === "" ? "openBook.jpg" :
       `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
@@ -93,7 +68,7 @@ class DisplayResults extends Component {
             </div>
             <div className="description">Published: {el.first_publish_year}</div>
           </div>
-          <AddBtns addToList={this.handleAddToList} book={el}/>
+          <AddBtns book={el} favColor={red} willReadColor={green}/>
         </div>
         )
       })}
@@ -117,7 +92,9 @@ const style = {
 const mapStateToProps = (state) => {
   return {
     results: state.results,
-    user: state.user.user
+    user: state.user.user,
+    favorites: state.user.favorites,
+    willRead: state.user.willRead
   }
 }
 

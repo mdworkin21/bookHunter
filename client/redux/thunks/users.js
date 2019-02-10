@@ -1,6 +1,7 @@
 import regeneratorRuntime, { async } from "regenerator-runtime";
 import axios from 'axios'
 import { getUser, deleteUser, failedLogIn} from '../actions/users'
+import { getUserFavorites, getUserWillReads} from "./userLists";
 
 //USER THUNK
 export const getUserFromPassport = (id) => {
@@ -39,9 +40,13 @@ export const logInUser = (user) => {
     try{
       const loggedInUser = await axios.post('/authenticate/checkUser', {user})
       if (loggedInUser.status === 200){
-        const user = loggedInUser.data
-        const action = getUser(user)
+        const userIsIn = loggedInUser.data
+        console.log(userIsIn)
+        const action = getUser(userIsIn)
         dispatch(action)
+        dispatch(getUserFavorites(userIsIn.id))
+        dispatch(getUserWillReads(userIsIn.id))
+
       } 
     } catch(err){
         dispatch(failedLogIn())
