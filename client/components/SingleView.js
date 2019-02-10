@@ -10,8 +10,14 @@ const SingleView = (props) => {
   const isbnNum = book.isbn ? book.isbn[0] : ""
   const displayImage = isbnNum === "" ? "/openBook.jpg" : `https://covers.openlibrary.org/b/isbn/${isbnNum}-M.jpg`
   const opening = book.hasOwnProperty('first_sentence') ? book.first_sentence : 'Sorry, Unvailable' 
+
+  //For Pagiation
   let nextBook = props.results.results[`${parseInt(props.match.params.id) + 1}`]
   let prevBook = props.results.results[`${parseInt(props.match.params.id) -  1}`]
+  
+  //Determines color to pass to addBtn Icons
+  let red = props.favorites.find(fav => isbnNum === fav.isbn) ? 'red' : ''
+  let green = props.willRead.find(fav => isbnNum === fav.isbn) ? 'green' : ''
 
   return ( 
     <React.Fragment>    
@@ -36,7 +42,7 @@ const SingleView = (props) => {
                 </div>
               </div>
             </div>
-             {/* <AddBtns addToList={this.handleAddToList} book={el}/> */}
+             <AddBtns book={book} favColor={red} willReadColor={green}/>
           </div>
           <PaginateBtn id='test' next={nextBook} prev={prevBook} id={parseInt(props.match.params.id)}/> 
     </div>
@@ -47,7 +53,9 @@ const SingleView = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    results: state.results
+    results: state.results,
+    favorites: state.user.favorites,
+    willRead: state.user.willRead
   }
 }
 

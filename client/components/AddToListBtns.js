@@ -4,6 +4,7 @@ import axios from 'axios'
 import regeneratorRuntime from "regenerator-runtime";
 import '../public/style/AddBtn.css'
 import { addToUserFavs, addToUserWillRead, deleteFromUserFav, deleteFromUserWillRead } from '../redux/thunks/userLists'
+
 class AddBtns extends Component {
   handleAddToList = async (id, book) => {
     let isbn = book.isbn ? book.isbn[0] : '' 
@@ -66,7 +67,6 @@ class AddBtns extends Component {
       console.log(err)
     }
   }
-
     
   handleClick = (event) => {
     let firstClassName = event.target.className.split(' ')[0]

@@ -22,7 +22,6 @@ router.post('/addbook', async (req, res, next) => {
 
 router.post('/addToFavorites', async (req, res, next) => {
   try{
-    console.log('BACK', typeof req.body.userId)
     let newBook = await Favorite.findOrCreate({where: {
       userId: req.body.userId,
       bookId: req.body.bookId
@@ -50,8 +49,7 @@ router.post('/willRead', async (req, res, next) => {
 
 router.delete('/favDelete/:userId/:bookId', async (req, res, next) => {
   try{
-    console.log('BACKEDD', req.params)
-    let deletedBook = await Favorite.destroy({
+    await Favorite.destroy({
       where: {
         userId: req.params.userId,
         bookId: req.params.bookId
@@ -65,7 +63,7 @@ router.delete('/favDelete/:userId/:bookId', async (req, res, next) => {
 
 router.delete('/willReadDelete/:userId/:bookId', async (req, res, next) => {
   try{
-    let deletedBook = await WillRead.destroy({
+    await WillRead.destroy({
       where: {
         userId: parseInt(req.params.userId),
         bookId: parseInt(req.params.bookId)
