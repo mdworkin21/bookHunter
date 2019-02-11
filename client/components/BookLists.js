@@ -4,7 +4,6 @@ import {deleteFromUserFav, deleteFromUserWillRead} from '../redux/thunks/userLis
 import '../public/style/BookLists.css'
 
 const BookLists = (props) => {
-  console.log(props)
   return (
     
     <div className="ui items list-container">
